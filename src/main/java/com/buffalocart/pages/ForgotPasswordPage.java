@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ForgotPasswordPage<email> extends TestHelperUtility {
     WebDriver driver;
+    LoginPage login;
     List<String> readExcelData = excel.readExcel(Constants.EXCEL_FILE_PATH, Constants.SHEET_NAME_FORGOT_PASSWORD_PAGE);
 
     public ForgotPasswordPage(WebDriver driver) throws IOException {
@@ -31,6 +32,27 @@ public class ForgotPasswordPage<email> extends TestHelperUtility {
     @FindBy(xpath =_messageBlock )
     public WebElement messageBlock;
 
+    public void forgotPasswordLinkClick() throws IOException {
+        login= new LoginPage(driver);
+        login.clickOnForgotPassword();
+    }
 
+    public String getExpectedInvalidUserName(){
+        return readExcelData.get(2);
+    }
+    public void setInvalidUserName(String userNameInvalid){
+     page.enterText(invalidUserName,userNameInvalid);
+    }
+
+    public void clickOnResetButton(){
+        page.clickOnElement(forgotPasswordButton);
+    }
+
+    public String getActualErrorMessageBlockInvalidUser(){
+        return page.getElementText(messageBlock);
+    }
+    public String getExpectedErrorMessageBlockInvalidUser(){
+        return readExcelData.get(4);
+    }
 
 }

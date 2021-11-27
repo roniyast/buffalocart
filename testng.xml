@@ -16,10 +16,21 @@
         <classes>
             <class name="com.buffalocart.testscripts.LoginTest">
                 <methods>
-                    <include name="VerifyLoginPageTitle"/>
-                    <include name="VerifyUserLoginWithValidUserCredentials"/>
-                    <include name="VerifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials"/>
-                    <include name="VerifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
+                    <exclude name="VerifyLoginPageTitle"/>
+                    <exclude name="VerifyUserLoginWithValidUserCredentials"/>
+                    <exclude name="VerifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials"/>
+                    <exclude name="VerifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.ForgotPasswordTest">
+                <methods>
+                    <exclude name="VerifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.HomeTest">
+                <methods>
+                    <exclude name="VerifyHomePageTitle"/>
+                    <exclude name="VerifyDateDisplayedInHomePage"/>
                 </methods>
             </class>
         </classes>

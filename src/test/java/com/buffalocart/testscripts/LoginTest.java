@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class LoginTest extends Base {
     LoginPage login;
-    HomePage userAccount;
+    HomePage home;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 1, enabled = true, description = "TC_001_VerifyLoginPageTitle", groups = {"Regression"})
@@ -29,7 +29,7 @@ public class LoginTest extends Base {
         String expectedTitle = login.getExpectedLoginPageTitle();
         extentTest.get().log(Status.PASS, "Expected Login page title generated");
         Assert.assertEquals(actualTitle, expectedTitle, "ERROR : Invalid Login Page Title Found");
-        extentTest.get().log(Status.PASS, "verify title test case passed");
+        extentTest.get().log(Status.PASS, "verify Login Page title test case passed");
     }
 
     @Test(priority = 2, enabled = true, description = "TC_002_VerifyUserLoginWithValidUserCredentials", groups = {"Smoke", "Regression"})
@@ -44,19 +44,19 @@ public class LoginTest extends Base {
         login.enterPasswordLogin(login.getPasswordLogin());
         extentTest.get().log(Status.PASS, "Expected Login page Password Captured");
         login.RememberMeLoginCheck("TRUE");
-        userAccount = login.loginButtonClick();
+        home = login.loginButtonClick();
 
-        userAccount.clickOnEndTour();
+        home.clickOnEndTour();
 
-        String actualUserAccountName = userAccount.getActualUserAccountName();
+        String actualUserAccountName = home.getActualUserAccountName();
         extentTest.get().log(Status.PASS, "Actual Username Captured");
-        String expectedUserAccountName = userAccount.getExpectedUserAccountName();
+        String expectedUserAccountName = home.getExpectedUserAccountName();
         extentTest.get().log(Status.PASS, "Expected Username Captured");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualUserAccountName, expectedUserAccountName, "ERROR : Unsuccessful Login");
         extentTest.get().log(Status.PASS, "Successfully completed soft assertion");
-        userAccount.clickOnUserName();
-        userAccount.userAccountSignOut();
+        home.clickOnUserName();
+        home.userAccountSignOut();
         extentTest.get().log(Status.PASS, "verify Successful login test case passed");
     }
 

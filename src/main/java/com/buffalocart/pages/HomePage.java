@@ -9,12 +9,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class HomePage extends TestHelperUtility {
 
     WebDriver driver;
-    List<String> readExcelData = excel.readExcel(Constants.EXCEL_FILE_PATH, Constants.SHEET_NAME_LOGIN_PAGE);
+    List<String> readExcelData = excel.readExcel(Constants.EXCEL_FILE_PATH, Constants.SHEET_NAME_HOME_PAGE);
 
     public HomePage(WebDriver driver) throws IOException {
         this.driver = driver;
@@ -32,16 +34,34 @@ public class HomePage extends TestHelperUtility {
     @FindBy(xpath =_userAccountSignOut )
     private WebElement userAccountSignOut;
 
+    private final String _homePageDate="//div[@class='m-8 pull-left mt-15 hidden-xs']//strong";
+    @FindBy(xpath = _homePageDate)
+    private WebElement homePageDate;
+
    public void clickOnEndTour(){endTour.click();}
 
+    public String getActualHomePageTitle(){
+       return page.getPageTitle(driver);
+    }
+    public String getExpectedHomePageTitle(){
+        return readExcelData.get(2);
+    }
     public String getActualUserAccountName(){
         return page.getElementText(userAccountName);
     }
 
     public String getExpectedUserAccountName(){
-        return  readExcelData.get(8);
+        return  readExcelData.get(4);
     }
 
+    public String getActualHomePageDate(){
+       return page.getElementText(homePageDate);
+   }
+
+    public String getExpectedHomePageDate(){
+        String eDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
+        return eDate;
+   }
     public void clickOnUserName(){
         page.clickOnElement(userAccountName);
     }
@@ -49,6 +69,7 @@ public class HomePage extends TestHelperUtility {
     public void userAccountSignOut(){
         page.clickOnElement(userAccountSignOut);
     }
+
 
 
 

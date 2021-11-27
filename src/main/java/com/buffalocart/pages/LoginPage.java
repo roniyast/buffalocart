@@ -62,11 +62,11 @@ public class LoginPage extends TestHelperUtility {
     }
 
     public String getInvalidUsernameLogin(){
-        return readExcelData.get(10);
+        return readExcelData.get(8);
     }
     public String getInvalidPasswordLogin(){
 
-        return readExcelData.get(12);
+        return readExcelData.get(10);
     }
 
 
@@ -103,11 +103,11 @@ public class LoginPage extends TestHelperUtility {
         return page.getElementText(invalidUserMessage);
     }
     public String getExpectedInvalidUserMessage() throws IOException {
-        return readExcelData.get(14);
+        return readExcelData.get(12);
     }
 
     public String getExpectedRememberMeCheckBoxStatus(){
-        return readExcelData.get(16);
+        return readExcelData.get(14);
     }
     public boolean getActualRememberMeCheckBoxStatus(){
         return page.isElementSelected(rememberMe);
