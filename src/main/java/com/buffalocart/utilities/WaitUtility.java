@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class WaitUtility {
     WebDriverWait wait;
     public static final long PAGE_LOAD_WAIT = 20;
-    public static final long EXPLICIT_WAIT = 20;
+    public static final long EXPLICIT_WAIT = 100;
     public static final long IMPLICIT_WAIT = 20;
 
     public enum LocatorType {
@@ -22,17 +22,17 @@ public class WaitUtility {
         if (locatorType.equals(LocatorType.Id)) {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
         } else if (locatorType.equals(LocatorType.Name)) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(target)));
         } else if (locatorType.equals(LocatorType.Xpath)) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(target)));
         } else if (locatorType.equals(LocatorType.TagName)) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(target)));
         } else if (locatorType.equals(LocatorType.CssSelector)) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(target)));
         } else if (locatorType.equals(LocatorType.LinkText)) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(target)));
         } else if (locatorType.equals(LocatorType.PartialLinkText)) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(target)));
         }
     }
 }

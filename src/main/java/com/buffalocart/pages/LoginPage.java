@@ -14,36 +14,35 @@ public class LoginPage extends TestHelperUtility {
 
     WebDriver driver;
     List<String> readExcelData = excel.readExcel(Constants.EXCEL_FILE_PATH, Constants.SHEET_NAME_LOGIN_PAGE);
-
+    HomePage home;
     public LoginPage(WebDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    private final String _userName ="username";
+    private final String _userName = "username";
     @FindBy(id = _userName)
     private WebElement userName;
 
-    private final String _password ="password";
+    private final String _password = "password";
     @FindBy(id = _password)
     private WebElement password;
 
-    private final String _rememberMe ="//div[@class='checkbox']//input[@name='remember']";
+    private final String _rememberMe = "//div[@class='checkbox']//input[@name='remember']";
     @FindBy(xpath = _rememberMe)
     private WebElement rememberMe;
 
-    private final String _invalidUserMessage ="//span[@class='help-block']//strong";
+    private final String _invalidUserMessage = "//span[@class='help-block']//strong";
     @FindBy(xpath = _invalidUserMessage)
     private WebElement invalidUserMessage;
 
-    private final String _loginButton ="//button[@type='submit']";
+    private final String _loginButton = "//button[@type='submit']";
     @FindBy(xpath = _loginButton)
     private WebElement loginButton;
 
-    private final String _forgotPassword ="//a[@class='btn btn-link']";
+    private final String _forgotPassword = "//a[@class='btn btn-link']";
     @FindBy(xpath = _forgotPassword)
     private WebElement forgotPassword;
-
 
 
     public String getActualLoginPageTitle() {
@@ -51,20 +50,23 @@ public class LoginPage extends TestHelperUtility {
     }
 
     public String getExpectedLoginPageTitle() throws IOException {
-       return readExcelData.get(2);
+        return readExcelData.get(2);
     }
-    public String getUsernameLogin(){
+
+    public String getUsernameLogin() {
         return readExcelData.get(4);
     }
-    public String getPasswordLogin(){
+
+    public String getPasswordLogin() {
 
         return readExcelData.get(6);
     }
 
-    public String getInvalidUsernameLogin(){
+    public String getInvalidUsernameLogin() {
         return readExcelData.get(8);
     }
-    public String getInvalidPasswordLogin(){
+
+    public String getInvalidPasswordLogin() {
 
         return readExcelData.get(10);
     }
@@ -91,26 +93,56 @@ public class LoginPage extends TestHelperUtility {
             page.clickOnElement(rememberMe);
         }
     }
-   public HomePage loginButtonClick() throws IOException {
+
+    public void loginButtonClick() throws IOException {
         page.clickOnElement(loginButton);
-        return new HomePage(driver);
     }
-    public ForgotPasswordPage clickOnForgotPassword() throws IOException {
+
+    public void clickOnForgotPassword() throws IOException {
         page.clickOnElement(forgotPassword);
-        return new ForgotPasswordPage(driver);
     }
+
     public String getActualInvalidUserMessage() throws IOException {
         return page.getElementText(invalidUserMessage);
     }
+
     public String getExpectedInvalidUserMessage() throws IOException {
         return readExcelData.get(12);
     }
 
-    public String getExpectedRememberMeCheckBoxStatus(){
+    public String getExpectedRememberMeCheckBoxStatus() {
         return readExcelData.get(14);
     }
-    public boolean getActualRememberMeCheckBoxStatus(){
+
+    public boolean getActualRememberMeCheckBoxStatus() {
         return page.isElementSelected(rememberMe);
     }
+
+    public HomePage successfulLoginHomePage() throws IOException {
+        enterUserNameLogin(getUsernameLogin());
+        enterPasswordLogin(getPasswordLogin());
+        RememberMeLoginCheck(getExpectedRememberMeCheckBoxStatus());
+        loginButtonClick();
+        return new HomePage(driver);
+    }
+    public UserManagementPage successfulLoginUserManagementPage() throws IOException {
+        enterUserNameLogin(getUsernameLogin());
+        enterPasswordLogin(getPasswordLogin());
+        RememberMeLoginCheck(getExpectedRememberMeCheckBoxStatus());
+        loginButtonClick();
+        home = new HomePage(driver);
+        home.clickOnEndTour();
+        return new UserManagementPage(driver);
+    }
+    public UsersPage successfulLoginUsersPage() throws IOException {
+        enterUserNameLogin(getUsernameLogin());
+        enterPasswordLogin(getPasswordLogin());
+        RememberMeLoginCheck(getExpectedRememberMeCheckBoxStatus());
+        loginButtonClick();
+        home = new HomePage(driver);
+        home.clickOnEndTour();
+        return new UsersPage(driver);
+    }
+
 
 }

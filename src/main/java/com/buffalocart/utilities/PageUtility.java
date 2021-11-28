@@ -1,6 +1,7 @@
 package com.buffalocart.utilities;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,7 +17,6 @@ public class PageUtility {
     List list;
 
     public void clickOnElement(WebElement element) {
-
         element.click();
     }
 
@@ -31,6 +31,10 @@ public class PageUtility {
 
     public String getPageTitle(WebDriver driver) {
         return driver.getTitle();
+    }
+
+    public List<WebElement> getWebElementList(WebDriver driver,String xpath){
+        return driver.findElements(By.xpath(xpath));
     }
 
     public boolean isElementDisplayed(WebElement element) {

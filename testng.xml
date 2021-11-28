@@ -33,6 +33,23 @@
                     <exclude name="VerifyDateDisplayedInHomePage"/>
                 </methods>
             </class>
+            <class name="com.buffalocart.testscripts.SignOutTest">
+                <methods>
+                    <exclude name="VerifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.UserManagementTest">
+                <methods>
+                    <exclude name="VerifyTheUserManagementSubTabs"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.UsersTest">
+                <methods>
+                    <exclude name="VerifyUsersPageTitle"/>
+                    <exclude name="VerifyUserSearchWithValidData"/>
+                    <include name="VerifyMessageDisplayedByUserSearchWithInvalidData"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

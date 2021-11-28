@@ -6,6 +6,7 @@ import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
 import com.buffalocart.pages.LoginPage;
 import com.buffalocart.pages.HomePage;
+import com.buffalocart.pages.SignOutPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,6 +17,7 @@ import java.io.IOException;
 public class LoginTest extends Base {
     LoginPage login;
     HomePage home;
+    SignOutPage signOut;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 1, enabled = true, description = "TC_001_VerifyLoginPageTitle", groups = {"Regression"})
@@ -43,8 +45,8 @@ public class LoginTest extends Base {
         extentTest.get().log(Status.PASS, "Expected Login page Username Captured");
         login.enterPasswordLogin(login.getPasswordLogin());
         extentTest.get().log(Status.PASS, "Expected Login page Password Captured");
-        login.RememberMeLoginCheck("TRUE");
-        home = login.loginButtonClick();
+        login.RememberMeLoginCheck(login.getExpectedRememberMeCheckBoxStatus());
+        login.loginButtonClick();
 
         home.clickOnEndTour();
 
@@ -56,7 +58,7 @@ public class LoginTest extends Base {
         softAssert.assertEquals(actualUserAccountName, expectedUserAccountName, "ERROR : Unsuccessful Login");
         extentTest.get().log(Status.PASS, "Successfully completed soft assertion");
         home.clickOnUserName();
-        home.userAccountSignOut();
+        signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "verify Successful login test case passed");
     }
 

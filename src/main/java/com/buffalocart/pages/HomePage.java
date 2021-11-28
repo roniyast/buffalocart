@@ -1,5 +1,6 @@
 package com.buffalocart.pages;
 
+import com.aventstack.extentreports.Status;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import org.openqa.selenium.By;
@@ -30,9 +31,7 @@ public class HomePage extends TestHelperUtility {
     @FindBy(xpath =_userAccountName )
     private WebElement userAccountName;
 
-    private final String _userAccountSignOut ="//div[@class='pull-right']/a";
-    @FindBy(xpath =_userAccountSignOut )
-    private WebElement userAccountSignOut;
+
 
     private final String _homePageDate="//div[@class='m-8 pull-left mt-15 hidden-xs']//strong";
     @FindBy(xpath = _homePageDate)
@@ -65,12 +64,6 @@ public class HomePage extends TestHelperUtility {
     public void clickOnUserName(){
         page.clickOnElement(userAccountName);
     }
-
-    public void userAccountSignOut(){
-        page.clickOnElement(userAccountSignOut);
-    }
-
-
 
 
 }
