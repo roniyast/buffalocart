@@ -102,8 +102,9 @@ public class LoginPage extends TestHelperUtility {
         }
     }
 
-    public void loginButtonClick() throws IOException {
+    public HomePage loginButtonClick() throws IOException {
         page.clickOnElement(loginButton);
+        return new HomePage(driver);
     }
 
     public void clickOnForgotPassword() throws IOException {

@@ -26,7 +26,7 @@ public class HomeTest extends Base {
         login.enterPasswordLogin(login.getPasswordLogin());
         login.RememberMeLoginCheck(login.getExpectedRememberMeCheckBoxStatus());
 
-        login.loginButtonClick();
+        home=login.loginButtonClick();
         extentTest.get().log(Status.PASS, "Successfully entered Valid Login credentials");
         home.clickOnEndTour();
 
@@ -34,7 +34,7 @@ public class HomeTest extends Base {
 
 
     @Test(priority = 6, enabled = true, description = "TC_006_VerifyHomePageTitle", groups = {"Regression"})
-    public void VerifyHomePageTitle() throws IOException {
+    public void VerifyHomePageTitle() throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         successfulLogin();
@@ -45,13 +45,13 @@ public class HomeTest extends Base {
         extentTest.get().log(Status.PASS, "Expected Home page title generated");
         softAssert.assertEquals(ActualHomePageTitle, expectedHomePageTitle, "ERROR : Invalid Home Page Title Found");
         extentTest.get().log(Status.PASS, "verify Home Page title test case passed");
-        home.clickOnUserName();
+        signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
     }
 
     @Test(priority = 7, enabled = true, description = "TC_007_VerifyDateDisplayedInHomePage", groups = {"Regression"})
-    public void VerifyDateDisplayedInHomePage () throws IOException {
+    public void VerifyDateDisplayedInHomePage () throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         successfulLogin();
@@ -62,7 +62,7 @@ public class HomeTest extends Base {
         extentTest.get().log(Status.PASS, "Actual Home page Date generated");
         softAssert.assertEquals(actualHomePageDate,expectedHomePageDate,"ERROR : Home Page Date not Valid");
         extentTest.get().log(Status.PASS, "verify Home Page Date test case passed");
-        home.clickOnUserName();
+        signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
 

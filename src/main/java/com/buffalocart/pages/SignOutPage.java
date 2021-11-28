@@ -1,6 +1,8 @@
 package com.buffalocart.pages;
 
 import com.buffalocart.utilities.TestHelperUtility;
+import org.apache.commons.logging.Log;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +21,10 @@ public class SignOutPage extends TestHelperUtility {
     @FindBy(xpath =_userAccountSignOut )
     private WebElement userAccountSignOut;
 
-    public void userAccountSignOut() throws IOException {
+    public LoginPage userAccountSignOut() throws IOException {
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("document.find")
         page.clickOnElement(userAccountSignOut);
+        return new LoginPage(driver);
     }
 }

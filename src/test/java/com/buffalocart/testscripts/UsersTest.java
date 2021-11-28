@@ -25,11 +25,10 @@ public class UsersTest extends Base {
     public void VerifyUsersPageTitle() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        usersPage = new UsersPage(driver);
-        signOut = new SignOutPage(driver);
+        home=new HomePage(driver);
         userManagementPage = loginPage.successfulLoginUserManagementPage();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        userManagementPage.userManagementTabClick();
+        usersPage=userManagementPage.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
         usersPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
@@ -42,7 +41,7 @@ public class UsersTest extends Base {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualUsersPageTitle, expectedUsersPageTitle, "ERROR :  Invalid User Page Title found");
         extentTest.get().log(Status.PASS, "Successfully asserted Users page title");
-        home.clickOnUserName();
+        signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
     }
 
@@ -52,12 +51,10 @@ public class UsersTest extends Base {
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        usersPage = new UsersPage(driver);
         home = new HomePage(driver);
-        signOut = new SignOutPage(driver);
         userManagementPage = loginPage.successfulLoginUserManagementPage();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        userManagementPage.userManagementTabClick();
+        usersPage=userManagementPage.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
         usersPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
@@ -70,7 +67,7 @@ public class UsersTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully Captured actual User id after search");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualUserValue, expectedUser, "ERROR : Value after search Mismatch");
-        home.clickOnUserName();
+        signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
 
@@ -81,12 +78,10 @@ public class UsersTest extends Base {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        usersPage = new UsersPage(driver);
         home = new HomePage(driver);
-        signOut = new SignOutPage(driver);
         userManagementPage = loginPage.successfulLoginUserManagementPage();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        userManagementPage.userManagementTabClick();
+        usersPage=userManagementPage.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
         usersPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
@@ -99,7 +94,7 @@ public class UsersTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully Captured actual Invalid  User id after search");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualInvalidUserValue, expectedInvalidUserValue, "ERROR : Value after Invalid User search message Mismatch");
-        home.clickOnUserName();
+        signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
 

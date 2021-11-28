@@ -76,7 +76,7 @@ public class NewUserTest extends Base {
         newUserPage.clickOnSaveButton();
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
         signOut=home.clickOnUserName();
-        signOut.userAccountSignOut();
+        loginPage=signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
         loginPage.getNewUsernameLogin();
         loginPage.getNewUserPasswordLogin();

@@ -19,7 +19,7 @@ public class SignOutTest extends Base {
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 8, enabled = true, description = "TC_008_VerifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton", groups = {"Smoke","Regression"})
-    public void VerifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton () throws IOException {
+    public void VerifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton () throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         extentTest.get().assignCategory("Smoke");
 

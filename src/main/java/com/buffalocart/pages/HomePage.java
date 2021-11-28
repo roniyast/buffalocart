@@ -3,6 +3,7 @@ package com.buffalocart.pages;
 import com.aventstack.extentreports.Status;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
+import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -61,7 +62,9 @@ public class HomePage extends TestHelperUtility {
         String eDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
         return eDate;
    }
-    public SignOutPage clickOnUserName(){
+    public SignOutPage clickOnUserName() throws InterruptedException {
+       Thread.sleep(1000);
+        //waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath,_userAccountName);
         page.clickOnElement(userAccountName);
         return new SignOutPage(driver);
     }

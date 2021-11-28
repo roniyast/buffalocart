@@ -46,18 +46,17 @@ public class LoginTest extends Base {
         login.enterPasswordLogin(login.getPasswordLogin());
         extentTest.get().log(Status.PASS, "Expected Login page Password Captured");
         login.RememberMeLoginCheck(login.getExpectedRememberMeCheckBoxStatus());
-        login.loginButtonClick();
-
+        home =login.loginButtonClick();
         home.clickOnEndTour();
-
         String actualUserAccountName = home.getActualUserAccountName();
         extentTest.get().log(Status.PASS, "Actual Username Captured");
         String expectedUserAccountName = home.getExpectedUserAccountName();
         extentTest.get().log(Status.PASS, "Expected Username Captured");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualUserAccountName, expectedUserAccountName, "ERROR : Unsuccessful Login");
+        softAssert.assertAll();
         extentTest.get().log(Status.PASS, "Successfully completed soft assertion");
-        home.clickOnUserName();
+        signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "verify Successful login test case passed");
     }
