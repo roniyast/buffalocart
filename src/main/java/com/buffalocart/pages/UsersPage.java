@@ -5,7 +5,6 @@ import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -35,9 +34,13 @@ public class UsersPage extends TestHelperUtility {
     @FindBy(xpath = _usersSearch)
     private WebElement usersSearch;
 
-    private final String _usersInvalidSearch = "//table[@id='users_table']//tr[@class='odd']//td";
+    private final String _usersInvalidSearch = "//td[@class='dataTables_empty']";
     @FindBy(xpath = _usersInvalidSearch)
     private WebElement usersInvalidSearch;
+
+    private final String _newUserAdd = "//a[@class='btn btn-block btn-primary']";
+    @FindBy(xpath = _newUserAdd)
+    private WebElement newUserAdd;
 
     public void usersTabClick() throws InterruptedException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1);
@@ -93,6 +96,11 @@ public class UsersPage extends TestHelperUtility {
 
     public void enterSearchValue(String value) {
         page.enterText(userValueSearch, value);
+    }
+
+    public NewUserPage clickOnNewUser() throws IOException {
+        page.clickOnElement(newUserAdd);
+        return new NewUserPage(driver);
     }
 
 }

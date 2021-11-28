@@ -26,8 +26,9 @@ public class UserManagementPage extends TestHelperUtility {
 
     private final String _userManagementSubTabs="//ul[@class='treeview-menu menu-open']//span[@class='title']";
 
-    public void userManagementTabClick(){
+    public UsersPage userManagementTabClick() throws IOException {
         page.clickOnElement(userManagementTab);
+        return new UsersPage(driver);
     }
 
     public List<WebElement> getUserManagementSubTabs() throws InterruptedException {

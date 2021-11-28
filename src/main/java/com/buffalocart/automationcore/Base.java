@@ -65,9 +65,7 @@ public class Base {
         }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
-        //driver.manage().timeouts().pageLoadTimeout(WaitUtility.PAGE_LOAD_WAIT, TimeUnit.SECONDS);
     }
-
 
     @BeforeMethod
     @Parameters("browser")

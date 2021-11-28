@@ -46,7 +46,7 @@ public class UsersTest extends Base {
         signOut.userAccountSignOut();
     }
 
-    @Test(priority = 11, enabled = true, description = "TC_011_VerifyUserSearchWithValidData", groups = {"Smoke","Sanity","Regression"})
+    @Test(priority = 11, enabled = true, description = "TC_011_VerifyUserSearchWithValidData", groups = {"Smoke", "Sanity", "Regression"})
     public void VerifyUserSearchWithValidData() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Sanity");
@@ -76,7 +76,7 @@ public class UsersTest extends Base {
 
     }
 
-    @Test(priority = 12, enabled = true, description = "TC_012_VerifyMessageDisplayedByUserSearchWithInvalidData", groups = {"Smoke","Regression"})
+    @Test(priority = 12, enabled = true, description = "TC_012_VerifyMessageDisplayedByUserSearchWithInvalidData", groups = {"Smoke", "Regression"})
     public void VerifyMessageDisplayedByUserSearchWithInvalidData() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Regression");
@@ -95,7 +95,7 @@ public class UsersTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully Captured expected Invalid User id");
 
         usersPage.enterSearchValue(expectedInvalidUserValue);
-        String actualInvalidUserValue = usersPage.getActualUserIdAfterSearch();
+        String actualInvalidUserValue = usersPage.getActualInvalidUserIdAfterSearch();
         extentTest.get().log(Status.PASS, "Successfully Captured actual Invalid  User id after search");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualInvalidUserValue, expectedInvalidUserValue, "ERROR : Value after Invalid User search message Mismatch");
@@ -103,7 +103,7 @@ public class UsersTest extends Base {
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
 
-
     }
+
 
 }

@@ -118,9 +118,9 @@ public class PageUtility {
         select.selectByValue(value);
     }
 
-    public void selectDropdownByValue(WebElement element, int value) {
+    public void selectDropdownByValue(WebElement element, String value) {
         select = new Select(element);
-        select.selectByIndex(value);
+        select.selectByValue(value);
     }
 
     public List<WebElement> selectGetOption(WebElement element) {

@@ -61,8 +61,9 @@ public class HomePage extends TestHelperUtility {
         String eDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
         return eDate;
    }
-    public void clickOnUserName(){
+    public SignOutPage clickOnUserName(){
         page.clickOnElement(userAccountName);
+        return new SignOutPage(driver);
     }
 
 

@@ -47,8 +47,15 @@
                 <methods>
                     <exclude name="VerifyUsersPageTitle"/>
                     <exclude name="VerifyUserSearchWithValidData"/>
-                    <include name="VerifyMessageDisplayedByUserSearchWithInvalidData"/>
+                    <exclude name="VerifyMessageDisplayedByUserSearchWithInvalidData"/>
                 </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.NewUserTest">
+            <methods>
+                <exclude name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
+                <exclude name="VerifyUserLoginWithNewlyAddedUser"/>
+                <include name="VerifyAddUsersPageTitle"/>
+            </methods>
             </class>
         </classes>
     </test>
