@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite">
+    <listeners>
+        <listener class-name="com.buffalocart.listener.TestListener"/>
+    </listeners>
+    <parameter name="browser" value="chrome"/>
+    <test name="Functional Test" parallel="methods" thread-count="3">
+     <!--<groups>
+            <run>
+                <include name="Regression"/>
+                <include name="Sanity"/>
+                <include name="Smoke"/>
+            </run>
+        </groups>-->
+        <classes>
+            <class name="com.buffalocart.testscripts.LoginTest">
+                <methods>
+                    <include name="VerifyLoginPageTitle"/>
+                    <include name="VerifyUserLoginWithValidUserCredentials"/>
+                    <include name="VerifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials"/>
+                    <include name="VerifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.ForgotPasswordTest">
+                <methods>
+                    <include name="VerifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.HomeTest">
+                <methods>
+                    <include name="VerifyHomePageTitle"/>
+                    <include name="VerifyDateDisplayedInHomePage"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.SignOutTest">
+                <methods>
+                    <include name="VerifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.UserManagementTest">
+                <methods>
+                    <include name="VerifyTheUserManagementSubTabs"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.UsersTest">
+                <methods>
+                    <include name="VerifyUsersPageTitle"/>
+                    <include name="VerifyUserSearchWithValidData"/>
+                    <include name="VerifyMessageDisplayedByUserSearchWithInvalidData"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.NewUserTest">
+            <methods>
+                <include name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
+                <include name="VerifyUserLoginWithNewlyAddedUser"/>
+                <include name="VerifyAddUsersPageTitle"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

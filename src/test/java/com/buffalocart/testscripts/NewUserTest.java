@@ -36,6 +36,7 @@ public class NewUserTest extends Base {
         newUserPage=usersPage.clickOnNewUser();
         extentTest.get().log(Status.PASS, "Successfully clicked New User Add Button");
         newUserPage.clickOnSaveButton();
+        newUserPage.clickOnToastMessage();
         extentTest.get().log(Status.PASS, "Successfully clicked Save Button");
         String actualErrorMessageForMandatoryField = newUserPage.getActualErrorMessageForMandatoryField();
         extentTest.get().log(Status.PASS, "Captured Actual Error message for mandatory Field");
@@ -74,18 +75,20 @@ public class NewUserTest extends Base {
         newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
         extentTest.get().log(Status.PASS, "Successfully Entered User Details");
         newUserPage.clickOnSaveButton();
+        Thread.sleep(200);
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
+        newUserPage.clickOnToastMessage();
         signOut=home.clickOnUserName();
-        loginPage=signOut.userAccountSignOut();
+        loginPage=signOut.userAccountSignOutUsingJS();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
-        loginPage.getNewUsernameLogin();
-        loginPage.getNewUserPasswordLogin();
+        loginPage.enterUserNameLogin(loginPage.getNewUsernameLogin());
+        loginPage.enterPasswordLogin(loginPage.getNewUserPasswordLogin());
         extentTest.get().log(Status.PASS, "New user credentials entered");
-        loginPage.loginButtonClick();
-        String actualTitle= home.getActualHomePageTitle();
-        String expectedTitle= home.getExpectedHomePageTitle();
+        home=loginPage.loginButtonClick();
+        String actualUser= home.getActualUserAccountName();
+        String expectedUser= home.getExpectedNewUserAccountName();
         softAssert = new SoftAssert();
-        softAssert.assertEquals(actualTitle,expectedTitle,"Unsuccessful User creation");
+        softAssert.assertEquals(actualUser,expectedUser,"Unsuccessful User creation");
         softAssert.assertAll();
         signOut= home.clickOnUserName();
         signOut.userAccountSignOut();
@@ -115,6 +118,42 @@ public class NewUserTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully Signed out");
 
     }
+
+    @Test(priority = 16, enabled = true, description = "TC_016_VerifyUserCanAddUserDetails", groups = { "Regression"})
+    public void VerifyUserCanAddUserDetails() throws IOException, InterruptedException {
+        extentTest.get().assignCategory("Smoke");
+        extentTest.get().assignCategory("Sanity");
+        extentTest.get().assignCategory("Regression");
+        loginPage = new LoginPage(driver);
+        home= new HomePage(driver);
+        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
+        usersPage=userManagementPage.userManagementTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
+        usersPage.usersTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
+        newUserPage = usersPage.clickOnNewUser();
+        newUserPage.enterPrefix(newUserPage.getPrefix());
+        newUserPage.enterFirstName(newUserPage.getFirstName());
+        newUserPage.enterLastName(newUserPage.getLastName());
+        newUserPage.enterEmail(newUserPage.getEmail());
+        newUserPage.selectRole();
+        newUserPage.enterUserName(newUserPage.getUserName());
+        newUserPage.enterPassword(newUserPage.getPassword());
+        newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
+        extentTest.get().log(Status.PASS, "Successfully Entered User Details");
+        newUserPage.clickOnSaveButton();
+        Thread.sleep(200);
+        extentTest.get().log(Status.PASS, "Successfully clicked Save button");
+        newUserPage.clickOnToastMessage();
+
+
+        signOut= home.clickOnUserName();
+        signOut.userAccountSignOut();
+        extentTest.get().log(Status.PASS, "Clicked on log out");
+
+    }
+
 
 
 }

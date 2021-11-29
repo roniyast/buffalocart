@@ -1,9 +1,6 @@
 package com.buffalocart.utilities;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -15,6 +12,7 @@ public class PageUtility {
     Alert alert;
     Select select;
     List list;
+    JavascriptExecutor js;
 
     public void clickOnElement(WebElement element) {
         element.click();
@@ -134,4 +132,14 @@ public class PageUtility {
         return element.getText();
     }
 
+    public void findElementUsingJavaScript(WebDriver driver,WebElement element){
+        js= (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    public void scrollByJS(WebDriver driver,WebElement element){
+        js= (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();",element);
+
+    }
 }

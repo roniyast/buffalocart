@@ -51,6 +51,12 @@ public class NewUserPage extends TestHelperUtility {
     private final String _saveButton = "//button[@class='btn btn-primary pull-right']";
     @FindBy(xpath = _saveButton)
     WebElement saveButton;
+    private final String _toastMessage = "//div[@id='toast-container']";
+    @FindBy(xpath = _toastMessage)
+    WebElement toastMessage;
+    private final String _tableRowValuesXpath="//table[@id='users_table']//tr";
+    private final String _tableRowCellValuesXpath="//table[@id='users_table']//tr[1]/td";
+
 
     public String getPrefix() {
         return readExcelData.get(4);
@@ -113,10 +119,8 @@ public class NewUserPage extends TestHelperUtility {
     }
 
     public void clickOnSaveButton() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.getElementById('submit_user_button').scrollIntoView();");
+        page.scrollByJS(driver,saveButton);
         page.clickOnElement(saveButton);
-
     }
 
     public String getActualErrorMessageForMandatoryField() throws InterruptedException {
@@ -132,6 +136,20 @@ public class NewUserPage extends TestHelperUtility {
 
     public String getPageExpectedTitle() {
         return readExcelData.get(11);
+    }
+
+    public void clickOnToastMessage() throws InterruptedException {
+        page.clickOnElement(toastMessage);
+    }
+
+    public List<WebElement> getTableRowWebElements(){
+       return  page.getWebElementList(driver,_tableRowValuesXpath);
+    }
+    public List<WebElement> getTableRowCellWebElements(){
+        return page.getWebElementList(driver,_tableRowCellValuesXpath);
+    }
+    public List<String> getTableContents(){
+        return table.tableManipulation(driver,getTableRowWebElements(),getTableRowCellWebElements());
     }
 
 }

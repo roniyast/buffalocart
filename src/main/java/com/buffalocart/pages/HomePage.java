@@ -63,11 +63,16 @@ public class HomePage extends TestHelperUtility {
         return eDate;
    }
     public SignOutPage clickOnUserName() throws InterruptedException {
-       Thread.sleep(1000);
-        //waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath,_userAccountName);
         page.clickOnElement(userAccountName);
         return new SignOutPage(driver);
     }
 
+    public SignOutPage clickOnUsernameUsingJS(){
+       page.findElementUsingJavaScript(driver,userAccountName);
+       return new SignOutPage(driver);
+    }
 
+    public String getExpectedNewUserAccountName() {
+       return readExcelData.get(6);
+    }
 }

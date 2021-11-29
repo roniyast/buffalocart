@@ -2,7 +2,6 @@ package com.buffalocart.pages;
 
 import com.buffalocart.utilities.TestHelperUtility;
 import org.apache.commons.logging.Log;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,9 +21,12 @@ public class SignOutPage extends TestHelperUtility {
     private WebElement userAccountSignOut;
 
     public LoginPage userAccountSignOut() throws IOException {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("document.find")
         page.clickOnElement(userAccountSignOut);
+        return new LoginPage(driver);
+    }
+
+    public LoginPage userAccountSignOutUsingJS() throws IOException {
+        page.findElementUsingJavaScript(driver,userAccountSignOut);
         return new LoginPage(driver);
     }
 }

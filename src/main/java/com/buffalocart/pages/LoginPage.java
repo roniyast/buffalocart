@@ -62,12 +62,12 @@ public class LoginPage extends TestHelperUtility {
         return readExcelData.get(6);
     }
     public String getNewUsernameLogin() {
-        return readExcelData.get(4);
+        return readExcelData.get(16);
     }
 
     public String getNewUserPasswordLogin() {
 
-        return readExcelData.get(6);
+        return readExcelData.get(18);
     }
 
     public String getInvalidUsernameLogin() {
