@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class WaitUtility {
     WebDriverWait wait;
     public static final long PAGE_LOAD_WAIT = 20;
-    public static final long EXPLICIT_WAIT = 200;
+    public static final long EXPLICIT_WAIT = 1000;
     public static final long IMPLICIT_WAIT = 20;
 
     public enum LocatorType {

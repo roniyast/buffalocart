@@ -53,8 +53,9 @@
             <class name="com.buffalocart.testscripts.NewUserTest">
             <methods>
                 <exclude name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
-                <include name="VerifyUserLoginWithNewlyAddedUser"/>
+                <exclude name="VerifyUserLoginWithNewlyAddedUser"/>
                 <exclude name="VerifyAddUsersPageTitle"/>
+                <include name="VerifyUserCanAddUserDetails"/>
             </methods>
             </class>
         </classes>

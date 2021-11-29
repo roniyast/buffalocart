@@ -139,7 +139,7 @@ public class NewUserPage extends TestHelperUtility {
     }
 
     public void clickOnToastMessage() throws InterruptedException {
-        page.clickOnElement(toastMessage);
+        page.findElementUsingJavaScript(driver,toastMessage);
     }
 
     public List<WebElement> getTableRowWebElements(){
@@ -148,8 +148,10 @@ public class NewUserPage extends TestHelperUtility {
     public List<WebElement> getTableRowCellWebElements(){
         return page.getWebElementList(driver,_tableRowCellValuesXpath);
     }
-    public List<String> getTableContents(){
-        return table.tableManipulation(driver,getTableRowWebElements(),getTableRowCellWebElements());
+    public /*List<String>*/void getTableContents() throws InterruptedException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath,_tableRowValuesXpath);
+        List<String> values= table.tableManipulation(driver,getTableRowWebElements(),getTableRowCellWebElements());
+        System.out.println(values);
     }
 
 }
