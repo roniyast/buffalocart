@@ -72,12 +72,17 @@ public class EditUserTest extends Base {
         usersPage.clickOnEditButton(userName);
         extentTest.get().log(Status.PASS, "Successfully captured username to search");
         editUserPage.setValueEmail();
+        extentTest.get().log(Status.PASS, "Edited email for a user");
         usersPage=editUserPage.updateButtonClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Update button");
         Thread.sleep(6000);
         List<ArrayList<String>> data=usersPage.getTableDataText();
         usersPage.getTableDataContains(data,editUserPage.getValueEdit());
-
-
+        extentTest.get().log(Status.PASS, "Checked for the updated value in table data");
+        Thread.sleep(6000);
+        signOut = home.clickOnUserName();
+        signOut.userAccountSignOut();
+        extentTest.get().log(Status.PASS, "Successfully Signed Out");
 
     }
 }

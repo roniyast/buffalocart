@@ -82,7 +82,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public String getActualUserIdAfterSearch() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, waitUtility.EXPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, waitUtility.EXPLICIT_WAIT_USER_NAME);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersSearch);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         if (actualUserValue != " ") {

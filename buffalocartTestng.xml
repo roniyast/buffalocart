@@ -14,7 +14,7 @@
             </run>
         </groups>-->
         <classes>
-       <!--     <class name="com.buffalocart.testscripts.LoginTest">
+            <class name="com.buffalocart.testscripts.LoginTest">
                 <methods>
                     <include name="verifyLoginPageTitle"/>
                     <include name="verifyUserLoginWithValidUserCredentials"/>
@@ -57,10 +57,10 @@
                 <include name="verifyAddUsersPageTitle"/>
                 <include name="verifyUserCanAddUserDetails"/>
             </methods>
-            </class>-->
+            </class>
             <class name="com.buffalocart.testscripts.EditUserTest">
                 <methods>
-                    <exclude name="verifyEditUserPageTitle"/>
+                    <include name="verifyEditUserPageTitle"/>
                     <include name="verifyUserCanEditTheUserDetails"/>
                 </methods>
             </class>
