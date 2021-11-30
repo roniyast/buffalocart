@@ -14,7 +14,7 @@
             </run>
         </groups>-->
         <classes>
-            <!--<class name="com.buffalocart.testscripts.LoginTest">
+            <class name="com.buffalocart.testscripts.LoginTest">
                 <methods>
                     <include name="VerifyLoginPageTitle"/>
                     <include name="VerifyUserLoginWithValidUserCredentials"/>
@@ -49,13 +49,13 @@
                     <include name="VerifyUserSearchWithValidData"/>
                     <include name="VerifyMessageDisplayedByUserSearchWithInvalidData"/>
                 </methods>
-            </class>-->
+            </class>
             <class name="com.buffalocart.testscripts.NewUserTest">
             <methods>
-               <!-- <include name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>-->
+                <include name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
                 <include name="VerifyUserLoginWithNewlyAddedUser"/>
-                <!--<include name="VerifyAddUsersPageTitle"/>
-                <include name="VerifyUserCanAddUserDetails"/>-->
+                <include name="VerifyAddUsersPageTitle"/>
+                <include name="VerifyUserCanAddUserDetails"/>
             </methods>
             </class>
         </classes>

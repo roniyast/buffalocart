@@ -117,14 +117,13 @@ public class UsersPage extends TestHelperUtility {
        // return table.actionData(rowElement, colElement);
 
     }
-    public boolean getTableDataContains(List<ArrayList<String>> tableData,String expectedUserName){
+    public void getTableDataContains(List<ArrayList<String>> tableData,String expectedUserName){
         boolean value = false;
         for(int i=0;i<tableData.size();i++){
         if(tableData.get(i).contains(expectedUserName)){
             value= true;
         }
         }
-        return value;
     }
 
 

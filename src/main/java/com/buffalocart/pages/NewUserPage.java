@@ -3,7 +3,6 @@ package com.buffalocart.pages;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
