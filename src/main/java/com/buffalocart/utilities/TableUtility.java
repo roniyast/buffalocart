@@ -39,14 +39,10 @@ public class TableUtility {
 
     public  List<ArrayList<WebElement>> actionData(List<WebElement> rowItems, List<WebElement> columnItems)
     {
-
-
-        int rSize = rowItems.size();
+        int rSize= rowItems.size();
         int cSize = columnItems.size();
-        int clistSize = (columnItems.size() / rowItems.size() )  ;
-        System.out.println("rSize ="+rSize+"  cSize="+cSize+"  clistSize= "+clistSize);
-
-        WebElement[] columnList = new WebElement[clistSize]; // 20/5 --->4
+        int clistSize = (columnItems.size() / rowItems.size())  ;
+        WebElement[] columnList = new WebElement[clistSize];
         List<ArrayList<WebElement>> gridData = new ArrayList<ArrayList<WebElement>>();
         int x = 0;
         int s = columnList.length;
@@ -58,9 +54,7 @@ public class TableUtility {
 
                 x++;
             }
-            x++;
             gridData.add(new ArrayList<WebElement>(Arrays.asList(columnList)));
-
         }
         return gridData;
     }

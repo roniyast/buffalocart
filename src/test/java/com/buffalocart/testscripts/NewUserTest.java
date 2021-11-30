@@ -24,7 +24,7 @@ public class NewUserTest extends Base {
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 13, enabled = true, description = "TC_013_VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm", groups = { "Regression"})
-    public void VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm() throws IOException, InterruptedException {
+    public void verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm() throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
@@ -55,7 +55,7 @@ public class NewUserTest extends Base {
 
     }
     @Test(priority = 14, enabled = true, description = "TC_014_VerifyUserLoginWithNewlyAddedUser", groups = { "Regression"})
-    public void VerifyUserLoginWithNewlyAddedUser() throws IOException, InterruptedException {
+    public void verifyUserLoginWithNewlyAddedUser() throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
@@ -97,7 +97,7 @@ public class NewUserTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on log out");
     }
     @Test(priority = 15, enabled = true, description = "TC_015_VerifyAddUsersPageTitle", groups = { "Regression"})
-    public void VerifyAddUsersPageTitle() throws IOException, InterruptedException {
+    public void verifyAddUsersPageTitle() throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
@@ -121,7 +121,7 @@ public class NewUserTest extends Base {
     }
 
     @Test(priority = 16, enabled = true, description = "TC_016_VerifyUserCanAddUserDetails", groups = { "Regression"})
-    public void VerifyUserCanAddUserDetails() throws IOException, InterruptedException {
+    public void verifyUserCanAddUserDetails() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
@@ -144,10 +144,9 @@ public class NewUserTest extends Base {
         newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
         extentTest.get().log(Status.PASS, "Successfully Entered User Details");
         usersPage=newUserPage.clickOnSaveButton();
-        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
         String expectedUserName= NewUserPage.getNewUserName();
-        List<ArrayList<String>> tableData = usersPage.getTableData();
+        List<ArrayList<String>> tableData = usersPage.getTableDataText();
         usersPage.getTableDataContains(tableData,expectedUserName);
         signOut= home.clickOnUserName();
         signOut.userAccountSignOut();

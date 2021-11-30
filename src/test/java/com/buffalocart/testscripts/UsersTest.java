@@ -8,9 +8,7 @@ import com.buffalocart.pages.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.List;
 
 public class UsersTest extends Base {
 
@@ -22,7 +20,7 @@ public class UsersTest extends Base {
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 10, enabled = true, description = "TC_010_VerifyUsersPageTitle", groups = {"Regression"})
-    public void VerifyUsersPageTitle() throws IOException, InterruptedException {
+    public void verifyUsersPageTitle() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
         home=new HomePage(driver);
@@ -46,7 +44,7 @@ public class UsersTest extends Base {
     }
 
     @Test(priority = 11, enabled = true, description = "TC_011_VerifyUserSearchWithValidData", groups = {"Smoke", "Sanity", "Regression"})
-    public void VerifyUserSearchWithValidData() throws IOException, InterruptedException {
+    public void verifyUserSearchWithValidData() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
@@ -74,7 +72,7 @@ public class UsersTest extends Base {
     }
 
     @Test(priority = 12, enabled = true, description = "TC_012_VerifyMessageDisplayedByUserSearchWithInvalidData", groups = {"Smoke", "Regression"})
-    public void VerifyMessageDisplayedByUserSearchWithInvalidData() throws IOException, InterruptedException {
+    public void verifyMessageDisplayedByUserSearchWithInvalidData() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);

@@ -16,6 +16,7 @@ import java.util.List;
 
 public class UsersPage extends TestHelperUtility {
     WebDriver driver;
+    boolean values;
 
     public UsersPage(WebDriver driver) throws IOException {
         this.driver = driver;
@@ -52,8 +53,12 @@ public class UsersPage extends TestHelperUtility {
     @FindBy(xpath = _cElement)
     private List<WebElement> colElement;
 
+    private final String _EditButton = "//a[@class='btn btn-xs btn-primary']";
+    @FindBy(xpath = _EditButton)
+    private WebElement editButton;
+
     public void usersTabClick() throws InterruptedException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1,waitUtility.EXPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, waitUtility.EXPLICIT_WAIT);
         page.clickOnElement(usersTab);
     }
 
@@ -67,7 +72,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public List<String> getActualUsersList() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch,waitUtility.EXPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, waitUtility.EXPLICIT_WAIT);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersSearch);
         List<String> usersList = new ArrayList<>();
         for (int i = 0; i < usersListWebElement.size(); i++) {
@@ -77,7 +82,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public String getActualUserIdAfterSearch() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch,waitUtility.EXPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, waitUtility.EXPLICIT_WAIT);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersSearch);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         if (actualUserValue != " ") {
@@ -93,7 +98,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public String getActualInvalidUserIdAfterSearch() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersInvalidSearch,waitUtility.EXPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersInvalidSearch, waitUtility.EXPLICIT_WAIT);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersInvalidSearch);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         System.out.println(actualUserValue);
@@ -112,20 +117,46 @@ public class UsersPage extends TestHelperUtility {
         page.clickOnElement(newUserAdd);
         return new NewUserPage(driver);
     }
-    public List<ArrayList<String>> getTableData() {
+
+    public List<ArrayList<String>> getTableDataText() {
         return TableUtility.getGridData(rowElement, colElement);
-       // return table.actionData(rowElement, colElement);
-
     }
-    public void getTableDataContains(List<ArrayList<String>> tableData,String expectedUserName){
+
+    public List<ArrayList<WebElement>> getTableDataWebElement() {
+        return tableUtility.actionData(rowElement, colElement);
+    }
+
+    public void getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName) {
         boolean value = false;
-        for(int i=0;i<tableData.size();i++){
-        if(tableData.get(i).contains(expectedUserName)){
-            value= true;
-        }
+        for (int i = 0; i < tableData.size(); i++) {
+            if (tableData.get(i).contains(expectedUserName)) {
+                value = true;
+            }
         }
     }
 
+    public EditUserPage clickOnEditButton(String userName) throws IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _EditButton, waitUtility.IMPLICIT_WAIT);
+        List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
+        if (values == false) {
+            for (int i = 0; i < actionData.size(); i++) {
+                for (int j = 0; j < actionData.get(0).size(); j++) {
+                    if (values == false) {
+                        WebElement data = actionData.get(i).get(j);
+                        String tData = data.getText();
+
+                        if (tData.contains(userName)) {
+                            page.clickOnElement(editButton);
+                            values = true;
+                        }
+                    }
+
+                }
+            }
+
+        }
+        return new EditUserPage(driver);
+    }
 
 
 }

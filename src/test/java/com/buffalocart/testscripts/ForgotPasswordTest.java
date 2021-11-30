@@ -17,7 +17,7 @@ public class ForgotPasswordTest extends Base {
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 5, enabled = true, description = "TC_005_VerifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId", groups = {"Regression"})
-    public void VerifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId() throws IOException {
+    public void verifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId() throws IOException {
 
         extentTest.get().assignCategory("Regression");
 

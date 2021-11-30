@@ -21,6 +21,9 @@ public class PageUtility {
     public void enterText(WebElement element, String value) {
         element.sendKeys(value);
     }
+    public void clearText(WebElement element){
+        element.clear();
+    }
 
     public String getAttributeValue(WebElement element, String attribute) {
 

@@ -7,7 +7,6 @@ import com.buffalocart.listener.TestListener;
 import com.buffalocart.pages.HomePage;
 import com.buffalocart.pages.LoginPage;
 import com.buffalocart.pages.SignOutPage;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -34,7 +33,7 @@ public class HomeTest extends Base {
 
 
     @Test(priority = 6, enabled = true, description = "TC_006_VerifyHomePageTitle", groups = {"Regression"})
-    public void VerifyHomePageTitle() throws IOException, InterruptedException {
+    public void verifyHomePageTitle() throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         successfulLogin();
@@ -51,7 +50,7 @@ public class HomeTest extends Base {
     }
 
     @Test(priority = 7, enabled = true, description = "TC_007_VerifyDateDisplayedInHomePage", groups = {"Regression"})
-    public void VerifyDateDisplayedInHomePage () throws IOException, InterruptedException {
+    public void verifyDateDisplayedInHomePage () throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         successfulLogin();

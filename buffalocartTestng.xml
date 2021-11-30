@@ -14,49 +14,55 @@
             </run>
         </groups>-->
         <classes>
-            <class name="com.buffalocart.testscripts.LoginTest">
+       <!--     <class name="com.buffalocart.testscripts.LoginTest">
                 <methods>
-                    <include name="VerifyLoginPageTitle"/>
-                    <include name="VerifyUserLoginWithValidUserCredentials"/>
-                    <include name="VerifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials"/>
-                    <include name="VerifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
+                    <include name="verifyLoginPageTitle"/>
+                    <include name="verifyUserLoginWithValidUserCredentials"/>
+                    <include name="verifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials"/>
+                    <include name="verifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.ForgotPasswordTest">
                 <methods>
-                    <include name="VerifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
+                    <include name="verifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.HomeTest">
                 <methods>
-                    <include name="VerifyHomePageTitle"/>
-                    <include name="VerifyDateDisplayedInHomePage"/>
+                    <include name="verifyHomePageTitle"/>
+                    <include name="verifyDateDisplayedInHomePage"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.SignOutTest">
                 <methods>
-                    <include name="VerifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
+                    <include name="verifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UserManagementTest">
                 <methods>
-                    <include name="VerifyTheUserManagementSubTabs"/>
+                    <include name="verifyTheUserManagementSubTabs"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UsersTest">
                 <methods>
-                    <include name="VerifyUsersPageTitle"/>
-                    <include name="VerifyUserSearchWithValidData"/>
-                    <include name="VerifyMessageDisplayedByUserSearchWithInvalidData"/>
+                    <include name="verifyUsersPageTitle"/>
+                    <include name="verifyUserSearchWithValidData"/>
+                    <include name="verifyMessageDisplayedByUserSearchWithInvalidData"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.NewUserTest">
             <methods>
-                <include name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
-                <include name="VerifyUserLoginWithNewlyAddedUser"/>
-                <include name="VerifyAddUsersPageTitle"/>
-                <include name="VerifyUserCanAddUserDetails"/>
+                <include name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
+                <include name="verifyUserLoginWithNewlyAddedUser"/>
+                <include name="verifyAddUsersPageTitle"/>
+                <include name="verifyUserCanAddUserDetails"/>
             </methods>
+            </class>-->
+            <class name="com.buffalocart.testscripts.EditUserTest">
+                <methods>
+                    <exclude name="verifyEditUserPageTitle"/>
+                    <include name="verifyUserCanEditTheUserDetails"/>
+                </methods>
             </class>
         </classes>
     </test>

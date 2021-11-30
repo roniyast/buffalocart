@@ -23,7 +23,7 @@ public class UserManagementTest extends Base {
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 9, enabled = true, description = "TC_009_VerifyTheUserManagementSubTabs", groups = {"Regression"})
-    public void VerifyTheUserManagementSubTabs() throws IOException, InterruptedException {
+    public void verifyTheUserManagementSubTabs() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
 
         loginPage = new LoginPage(driver);

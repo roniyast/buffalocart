@@ -21,7 +21,7 @@ public class LoginTest extends Base {
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 1, enabled = true, description = "TC_001_VerifyLoginPageTitle", groups = {"Regression"})
-    public void VerifyLoginPageTitle() throws IOException {
+    public void verifyLoginPageTitle() throws IOException {
 
         extentTest.get().assignCategory("Regression");
 
@@ -35,7 +35,7 @@ public class LoginTest extends Base {
     }
 
     @Test(priority = 2, enabled = true, description = "TC_002_VerifyUserLoginWithValidUserCredentials", groups = {"Smoke", "Regression"})
-    public void VerifyUserLoginWithValidUserCredentials() throws IOException, InterruptedException {
+    public void verifyUserLoginWithValidUserCredentials() throws IOException, InterruptedException {
 
         extentTest.get().assignCategory("Regression");
         extentTest.get().assignCategory("Smoke");
@@ -62,7 +62,7 @@ public class LoginTest extends Base {
     }
 
     @Test(priority = 3, enabled = true, description = "TC_003_VerifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials", groups = {"Regression"})
-    public void VerifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials() throws IOException {
+    public void verifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials() throws IOException {
         extentTest.get().assignCategory("Regression");
 
         login = new LoginPage(driver);
@@ -81,7 +81,7 @@ public class LoginTest extends Base {
     }
 
     @Test(priority = 4, enabled = true, description = "TC_004_VerifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox", groups = {"Regression"})
-    public void VerifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox() throws IOException {
+    public void verifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox() throws IOException {
         extentTest.get().assignCategory("Regression");
 
         login = new LoginPage(driver);
