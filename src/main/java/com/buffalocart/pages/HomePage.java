@@ -75,4 +75,5 @@ public class HomePage extends TestHelperUtility {
     public String getExpectedNewUserAccountName() {
        return readExcelData.get(6);
     }
+
 }

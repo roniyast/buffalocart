@@ -3,7 +3,9 @@ package com.buffalocart.utilities;
 import java.util.Random;
 
 public class RandomDataUtility {
-    public String getRandomEmail() {
+    public String getRandomString(String valueType) {
+        
+        String randomValue = ""; 
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -13,7 +15,13 @@ public class RandomDataUtility {
             char randomChar = alphabet.charAt(index);
             sb.append(randomChar);
         }
-        String randomStringEmail = sb.toString() + "@gmail.com";
-        return randomStringEmail;
+        if(valueType.equals("email")){
+            randomValue = sb.toString() + "@gmail.com";
+        }
+        else if(valueType.equals("uname")){
+            randomValue = sb.toString() ;
+        }
+        return randomValue;
     }
+  
 }

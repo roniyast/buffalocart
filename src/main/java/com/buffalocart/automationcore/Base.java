@@ -95,7 +95,7 @@ public class Base {
 
         String dateName = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         email = new EmailUtility(System.getProperty("user.dir") + "//TestReport//", "ExtentReport_" + dateName + ".html", prop.getProperty("to_email"), filenames, prop);
-        //email.sendEmail();
+        email.sendEmail();
     }
 
     public void takeScreenshot(ITestResult result) throws IOException {

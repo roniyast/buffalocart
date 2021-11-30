@@ -1,6 +1,7 @@
 package com.buffalocart.pages;
 
 import com.buffalocart.constants.Constants;
+import com.buffalocart.utilities.TableUtility;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class UsersPage extends TestHelperUtility {
     WebDriver driver;
@@ -41,6 +43,14 @@ public class UsersPage extends TestHelperUtility {
     private final String _newUserAdd = "//a[@class='btn btn-block btn-primary']";
     @FindBy(xpath = _newUserAdd)
     private WebElement newUserAdd;
+
+    private final String _rElement = "//table[@id='users_table']//tbody//tr";
+    @FindBy(xpath = _rElement)
+    private List<WebElement> rowElement;
+
+    private final String _cElement = "//table[@id='users_table']//tbody//tr//td";
+    @FindBy(xpath = _cElement)
+    private List<WebElement> colElement;
 
     public void usersTabClick() throws InterruptedException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1);
@@ -102,5 +112,21 @@ public class UsersPage extends TestHelperUtility {
         page.clickOnElement(newUserAdd);
         return new NewUserPage(driver);
     }
+    public List<ArrayList<String>> getTableData() {
+        return TableUtility.getGridData(rowElement, colElement);
+       // return table.actionData(rowElement, colElement);
+
+    }
+    public boolean getTableDataContains(List<ArrayList<String>> tableData,String expectedUserName){
+        boolean value = false;
+        for(int i=0;i<tableData.size();i++){
+        if(tableData.get(i).contains(expectedUserName)){
+            value= true;
+        }
+        }
+        return value;
+    }
+
+
 
 }

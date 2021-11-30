@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class WaitUtility {
     WebDriverWait wait;
     public static final long PAGE_LOAD_WAIT = 20;
-    public static final long EXPLICIT_WAIT = 1000;
+    public static final long EXPLICIT_WAIT = 5000;
     public static final long IMPLICIT_WAIT = 20;
 
     public enum LocatorType {
@@ -33,6 +33,9 @@ public class WaitUtility {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(target)));
         } else if (locatorType.equals(LocatorType.PartialLinkText)) {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(target)));
+        }
+        else{
+
         }
     }
 }

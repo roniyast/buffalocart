@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewUserTest extends Base {
     LoginPage loginPage;
@@ -74,26 +76,26 @@ public class NewUserTest extends Base {
         newUserPage.enterPassword(newUserPage.getPassword());
         newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
         extentTest.get().log(Status.PASS, "Successfully Entered User Details");
-        newUserPage.clickOnSaveButton();
-        Thread.sleep(200);
+        usersPage =newUserPage.clickOnSaveButton();
+        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
-        newUserPage.clickOnToastMessage();
+        //newUserPage.clickOnToastMessage();
+        Thread.sleep(6000);
         signOut=home.clickOnUserName();
         loginPage=signOut.userAccountSignOutUsingJS();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
-        loginPage.enterUserNameLogin(loginPage.getNewUsernameLogin());
-        loginPage.enterPasswordLogin(loginPage.getNewUserPasswordLogin());
+        loginPage.enterUserNameLogin(NewUserPage.getNewUserName());
+        loginPage.enterPasswordLogin(newUserPage.getPassword());
         extentTest.get().log(Status.PASS, "New user credentials entered");
         home=loginPage.loginButtonClick();
         String actualUser= home.getActualUserAccountName();
-        String expectedUser= home.getExpectedNewUserAccountName();
+        String expectedUser= newUserPage.getNewUserHomePage();
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualUser,expectedUser,"Unsuccessful User creation");
         softAssert.assertAll();
         signOut= home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Clicked on log out");
-
     }
     @Test(priority = 15, enabled = true, description = "TC_015_VerifyAddUsersPageTitle", groups = { "Regression"})
     public void VerifyAddUsersPageTitle() throws IOException, InterruptedException {
@@ -142,14 +144,17 @@ public class NewUserTest extends Base {
         newUserPage.enterPassword(newUserPage.getPassword());
         newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
         extentTest.get().log(Status.PASS, "Successfully Entered User Details");
-        newUserPage.clickOnSaveButton();
+        usersPage=newUserPage.clickOnSaveButton();
+        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
-       // newUserPage.clickOnToastMessage();
-        newUserPage.getTableContents();
-        /*signOut= home.clickOnUserName();
+        String expectedUserName= NewUserPage.getNewUserName();
+        List<ArrayList<String>> tableData = usersPage.getTableData();
+        boolean value =usersPage.getTableDataContains(tableData,expectedUserName);
+        Thread.sleep(6000);
+        signOut= home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Clicked on log out");
-*/
+
     }
 
 

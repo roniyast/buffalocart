@@ -58,6 +58,18 @@ public class NewUserPage extends TestHelperUtility {
     private final String _tableRowCellValuesXpath="//table[@id='users_table']//tr[1]/td";
 
 
+    private static String newUserName;
+    public static String getNewUserName() {
+        return newUserName;
+    }
+    public static void setNewUserName(String newUserName) {
+        NewUserPage.newUserName = newUserName;
+    }
+
+
+
+
+
     public String getPrefix() {
         return readExcelData.get(4);
     }
@@ -83,7 +95,7 @@ public class NewUserPage extends TestHelperUtility {
         }
 
     public String getEmail() {
-        return random.getRandomEmail();
+        return random.getRandomString("email");
     }
 
     public void enterEmail(String eMail) {
@@ -96,7 +108,11 @@ public class NewUserPage extends TestHelperUtility {
     }
 
     public String getUserName(){
-        return readExcelData.get(8);
+        setNewUserName(random.getRandomString("uname"));
+        return getNewUserName();
+    }
+    public String getNewUserHomePage(){
+        return readExcelData.get(5)+" "+readExcelData.get(6);
     }
     public void enterUserName(String uName){
         page.enterText(userName,uName);
@@ -118,9 +134,10 @@ public class NewUserPage extends TestHelperUtility {
         page.enterText(confirmPassword, confirmPasswordValue);
     }
 
-    public void clickOnSaveButton() throws InterruptedException {
+    public UsersPage clickOnSaveButton() throws InterruptedException, IOException {
         page.scrollByJS(driver,saveButton);
         page.clickOnElement(saveButton);
+        return new UsersPage(driver);
     }
 
     public String getActualErrorMessageForMandatoryField() throws InterruptedException {
@@ -139,7 +156,8 @@ public class NewUserPage extends TestHelperUtility {
     }
 
     public void clickOnToastMessage() throws InterruptedException {
-        page.findElementUsingJavaScript(driver,toastMessage);
+        //page.findElementUsingJavaScript(driver,toastMessage);
+        Thread.sleep(100);
     }
 
     public List<WebElement> getTableRowWebElements(){
@@ -148,10 +166,6 @@ public class NewUserPage extends TestHelperUtility {
     public List<WebElement> getTableRowCellWebElements(){
         return page.getWebElementList(driver,_tableRowCellValuesXpath);
     }
-    public /*List<String>*/void getTableContents() throws InterruptedException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath,_tableRowValuesXpath);
-        List<String> values= table.tableManipulation(driver,getTableRowWebElements(),getTableRowCellWebElements());
-        System.out.println(values);
-    }
+
 
 }
