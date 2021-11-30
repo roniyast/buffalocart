@@ -79,7 +79,6 @@ public class NewUserTest extends Base {
         usersPage =newUserPage.clickOnSaveButton();
         Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
-        //newUserPage.clickOnToastMessage();
         Thread.sleep(6000);
         signOut=home.clickOnUserName();
         loginPage=signOut.userAccountSignOutUsingJS();
@@ -149,8 +148,7 @@ public class NewUserTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
         String expectedUserName= NewUserPage.getNewUserName();
         List<ArrayList<String>> tableData = usersPage.getTableData();
-        boolean value =usersPage.getTableDataContains(tableData,expectedUserName);
-        Thread.sleep(6000);
+        usersPage.getTableDataContains(tableData,expectedUserName);
         signOut= home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Clicked on log out");

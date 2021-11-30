@@ -78,7 +78,7 @@ public class Base {
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
         takeScreenshot(result);
-        //driver.close();
+        driver.close();
     }
 
     @AfterSuite

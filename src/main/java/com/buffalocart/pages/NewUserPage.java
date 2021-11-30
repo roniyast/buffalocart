@@ -103,7 +103,7 @@ public class NewUserPage extends TestHelperUtility {
     }
 
     public void selectRole() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Id, _role);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Id, _role,waitUtility.EXPLICIT_WAIT);
         page.selectDropdownByIndex(role,Integer.parseInt(readExcelData.get(7)));
     }
 

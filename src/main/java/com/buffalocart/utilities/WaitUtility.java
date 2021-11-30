@@ -10,15 +10,16 @@ import java.util.concurrent.TimeUnit;
 public class WaitUtility {
     WebDriverWait wait;
     public static final long PAGE_LOAD_WAIT = 20;
-    public static final long EXPLICIT_WAIT = 5000;
+    public static final long EXPLICIT_WAIT = 20;
     public static final long IMPLICIT_WAIT = 20;
+    public static final long EXPLICIT_WAIT_USER_NAME = 6000;
 
     public enum LocatorType {
         Id, Xpath, CssSelector, LinkText, PartialLinkText, TagName, Name
     }
 
-    public void waitForVisibilityOfElement(WebDriver driver, Enum locatorType, String target) {
-        wait = new WebDriverWait(driver, TimeUnit.SECONDS.toSeconds(EXPLICIT_WAIT));
+    public void waitForVisibilityOfElement(WebDriver driver, Enum locatorType, String target,long waitParameter) {
+        wait = new WebDriverWait(driver, TimeUnit.SECONDS.toSeconds(waitParameter));
         if (locatorType.equals(LocatorType.Id)) {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(target)));
         } else if (locatorType.equals(LocatorType.Name)) {
@@ -38,4 +39,13 @@ public class WaitUtility {
 
         }
     }
+    public void elementToBeClickable(WebDriver driver, Enum locatorType, String target, long explicitWaitUserName) {
+        wait = new WebDriverWait(driver, TimeUnit.SECONDS.toSeconds(EXPLICIT_WAIT_USER_NAME));
+        if (locatorType.equals(LocatorType.Xpath)) {
+            System.out.println(1);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(target)));
+        }
+
+    }
+
 }

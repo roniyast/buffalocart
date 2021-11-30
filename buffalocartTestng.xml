@@ -52,10 +52,10 @@
             </class>-->
             <class name="com.buffalocart.testscripts.NewUserTest">
             <methods>
-                <exclude name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
-                <exclude name="VerifyUserLoginWithNewlyAddedUser"/>
-                <exclude name="VerifyAddUsersPageTitle"/>
-                <include name="VerifyUserCanAddUserDetails"/>
+               <!-- <include name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>-->
+                <include name="VerifyUserLoginWithNewlyAddedUser"/>
+                <!--<include name="VerifyAddUsersPageTitle"/>
+                <include name="VerifyUserCanAddUserDetails"/>-->
             </methods>
             </class>
         </classes>

@@ -32,7 +32,7 @@ public class UserManagementPage extends TestHelperUtility {
     }
 
     public List<WebElement> getUserManagementSubTabs() throws InterruptedException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath,_userManagementSubTabs);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath,_userManagementSubTabs,waitUtility.EXPLICIT_WAIT);
        return page.getWebElementList(driver,_userManagementSubTabs);
     }
 

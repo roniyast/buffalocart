@@ -53,7 +53,7 @@ public class UsersPage extends TestHelperUtility {
     private List<WebElement> colElement;
 
     public void usersTabClick() throws InterruptedException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1,waitUtility.EXPLICIT_WAIT);
         page.clickOnElement(usersTab);
     }
 
@@ -67,7 +67,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public List<String> getActualUsersList() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch,waitUtility.EXPLICIT_WAIT);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersSearch);
         List<String> usersList = new ArrayList<>();
         for (int i = 0; i < usersListWebElement.size(); i++) {
@@ -77,7 +77,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public String getActualUserIdAfterSearch() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch,waitUtility.EXPLICIT_WAIT);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersSearch);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         if (actualUserValue != " ") {
@@ -93,7 +93,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public String getActualInvalidUserIdAfterSearch() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersInvalidSearch);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersInvalidSearch,waitUtility.EXPLICIT_WAIT);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersInvalidSearch);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         System.out.println(actualUserValue);

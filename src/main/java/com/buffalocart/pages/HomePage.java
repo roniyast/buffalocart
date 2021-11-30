@@ -4,6 +4,7 @@ import com.aventstack.extentreports.Status;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
+import org.apache.poi.util.LocaleID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -62,7 +63,8 @@ public class HomePage extends TestHelperUtility {
         String eDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
         return eDate;
    }
-    public SignOutPage clickOnUserName() throws InterruptedException {
+    public SignOutPage clickOnUserName() {
+       waitUtility.elementToBeClickable(driver, WaitUtility.LocatorType.Xpath,_userAccountName,waitUtility.EXPLICIT_WAIT_USER_NAME);
         page.clickOnElement(userAccountName);
         return new SignOutPage(driver);
     }
