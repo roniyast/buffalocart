@@ -21,6 +21,7 @@ public class UserManagementTest extends Base {
     UserManagementPage userManagementPage;
     SignOutPage signOut;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
+    SoftAssert softAssert;
 
     @Test(priority = 9, enabled = true, description = "TC_009_VerifyTheUserManagementSubTabs", groups = {"Regression"})
     public void verifyTheUserManagementSubTabs() throws IOException, InterruptedException {
@@ -37,12 +38,13 @@ public class UserManagementTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully Clicked into User Management Tab");
         List<String> actualUserManagementSubTabs = userManagementPage.getActualUserManagementSubTabsText();
         extentTest.get().log(Status.PASS, "Successfully captured Actual User Management Tab Values");
-        SoftAssert softAssert = new SoftAssert();
+        softAssert = new SoftAssert();
         softAssert.assertEquals(actualUserManagementSubTabs, expectedUserManagementSubTabs, "ERROR : UserManagement Tabs Text Mismatch");
         extentTest.get().log(Status.PASS, "Tab values provided are matching");
         home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
+        softAssert.assertAll();
     }
 
 }

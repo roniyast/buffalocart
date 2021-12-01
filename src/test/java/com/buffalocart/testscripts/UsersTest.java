@@ -17,6 +17,7 @@ public class UsersTest extends Base {
     UserManagementPage userManagementPage;
     SignOutPage signOut;
     UsersPage usersPage;
+    SoftAssert softAssert;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 10, enabled = true, description = "TC_010_VerifyUsersPageTitle", groups = {"Regression"})
@@ -36,11 +37,12 @@ public class UsersTest extends Base {
         String actualUsersPageTitle = usersPage.getActualUsersPageTitle();
         extentTest.get().log(Status.PASS, "Successfully captured  actual Users page title");
         System.out.println(actualUsersPageTitle);
-        SoftAssert softAssert = new SoftAssert();
+        softAssert = new SoftAssert();
         softAssert.assertEquals(actualUsersPageTitle, expectedUsersPageTitle, "ERROR :  Invalid User Page Title found");
         extentTest.get().log(Status.PASS, "Successfully asserted Users page title");
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
+        softAssert.assertAll();
     }
 
     @Test(priority = 11, enabled = true, description = "TC_011_VerifyUserSearchWithValidData", groups = {"Smoke", "Sanity", "Regression"})
@@ -56,18 +58,17 @@ public class UsersTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
         usersPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
-
         String expectedUser = usersPage.getExpectedUser();
         extentTest.get().log(Status.PASS, "Successfully Captured expected User id");
-
         usersPage.enterSearchValue(expectedUser);
         String actualUserValue = usersPage.getActualUserIdAfterSearch();
         extentTest.get().log(Status.PASS, "Successfully Captured actual User id after search");
-        SoftAssert softAssert = new SoftAssert();
+        softAssert = new SoftAssert();
         softAssert.assertEquals(actualUserValue, expectedUser, "ERROR : Value after search Mismatch");
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
+        softAssert.assertAll();
 
     }
 
@@ -90,11 +91,12 @@ public class UsersTest extends Base {
         usersPage.enterSearchValue(expectedInvalidUserValue);
         String actualInvalidUserValue = usersPage.getActualInvalidUserIdAfterSearch();
         extentTest.get().log(Status.PASS, "Successfully Captured actual Invalid  User id after search");
-        SoftAssert softAssert = new SoftAssert();
+        softAssert = new SoftAssert();
         softAssert.assertEquals(actualInvalidUserValue, expectedInvalidUserValue, "ERROR : Value after Invalid User search message Mismatch");
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
+        softAssert.assertAll();
 
     }
 

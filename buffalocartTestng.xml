@@ -16,52 +16,57 @@
         <classes>
             <class name="com.buffalocart.testscripts.LoginTest">
                 <methods>
-                    <include name="verifyLoginPageTitle"/>
-                    <include name="verifyUserLoginWithValidUserCredentials"/>
-                    <include name="verifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials"/>
-                    <include name="verifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
+                    <exclude name="verifyLoginPageTitle"/>
+                    <exclude name="verifyUserLoginWithValidUserCredentials"/>
+                    <exclude name="verifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials"/>
+                    <exclude name="verifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.ForgotPasswordTest">
                 <methods>
-                    <include name="verifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
+                    <exclude name="verifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.HomeTest">
                 <methods>
-                    <include name="verifyHomePageTitle"/>
-                    <include name="verifyDateDisplayedInHomePage"/>
+                    <exclude name="verifyHomePageTitle"/>
+                    <exclude name="verifyDateDisplayedInHomePage"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.SignOutTest">
                 <methods>
-                    <include name="verifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
+                    <exclude name="verifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UserManagementTest">
                 <methods>
-                    <include name="verifyTheUserManagementSubTabs"/>
+                    <exclude name="verifyTheUserManagementSubTabs"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UsersTest">
                 <methods>
-                    <include name="verifyUsersPageTitle"/>
-                    <include name="verifyUserSearchWithValidData"/>
-                    <include name="verifyMessageDisplayedByUserSearchWithInvalidData"/>
+                    <exclude name="verifyUsersPageTitle"/>
+                    <exclude name="verifyUserSearchWithValidData"/>
+                    <exclude name="verifyMessageDisplayedByUserSearchWithInvalidData"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.NewUserTest">
             <methods>
-                <include name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
-                <include name="verifyUserLoginWithNewlyAddedUser"/>
-                <include name="verifyAddUsersPageTitle"/>
-                <include name="verifyUserCanAddUserDetails"/>
+                <exclude name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
+                <exclude name="verifyUserLoginWithNewlyAddedUser"/>
+                <exclude name="verifyAddUsersPageTitle"/>
+                <exclude name="verifyUserCanAddUserDetails"/>
             </methods>
             </class>
             <class name="com.buffalocart.testscripts.EditUserTest">
                 <methods>
-                    <include name="verifyEditUserPageTitle"/>
-                    <include name="verifyUserCanEditTheUserDetails"/>
+                    <exclude name="verifyEditUserPageTitle"/>
+                    <exclude name="verifyUserCanEditTheUserDetails"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.DeleteUserTest">
+                <methods>
+                     <include name="verifyUserCanDeleteUser"/>
                 </methods>
             </class>
         </classes>

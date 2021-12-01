@@ -9,6 +9,7 @@ import com.buffalocart.pages.LoginPage;
 import com.buffalocart.pages.SignOutPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
@@ -22,7 +23,6 @@ public class SignOutTest extends Base {
     public void verifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton () throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         extentTest.get().assignCategory("Smoke");
-
         login = new LoginPage(driver);
         signOut= new SignOutPage(driver);
         home =login.successfulLoginHomePage();

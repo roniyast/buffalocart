@@ -17,6 +17,7 @@ public class HomeTest extends Base {
     HomePage home;
     LoginPage login;
     SignOutPage signOut;
+    SoftAssert softAssert;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     public void successfulLogin() throws IOException {
@@ -37,7 +38,7 @@ public class HomeTest extends Base {
 
         extentTest.get().assignCategory("Regression");
         successfulLogin();
-        SoftAssert softAssert = new SoftAssert();
+        softAssert = new SoftAssert();
         String ActualHomePageTitle = home.getActualHomePageTitle();
         extentTest.get().log(Status.PASS, "Actual Home page title generated");
         String expectedHomePageTitle = home.getExpectedHomePageTitle();
@@ -47,6 +48,7 @@ public class HomeTest extends Base {
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
+        softAssert.assertAll();
     }
 
     @Test(priority = 7, enabled = true, description = "TC_007_VerifyDateDisplayedInHomePage", groups = {"Regression"})
@@ -54,7 +56,7 @@ public class HomeTest extends Base {
 
         extentTest.get().assignCategory("Regression");
         successfulLogin();
-        SoftAssert softAssert = new SoftAssert();
+        softAssert = new SoftAssert();
         String expectedHomePageDate = home.getExpectedHomePageDate();
         extentTest.get().log(Status.PASS, "Expected Home page Date generated");
         String actualHomePageDate = home.getActualHomePageDate();
@@ -64,6 +66,7 @@ public class HomeTest extends Base {
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
+        softAssert.assertAll();
 
     }
 

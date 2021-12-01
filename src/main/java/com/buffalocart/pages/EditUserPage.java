@@ -39,6 +39,9 @@ public class EditUserPage extends TestHelperUtility {
     public String getEditUserSearch(){
         return readExcelData.get(4);
     }
+    public String getDeleteUserSearch(){
+        return readExcelData.get(10);
+    }
     public UsersPage updateButtonClick() throws IOException {
         page.clickOnElement(updateButton);
         return new UsersPage(driver);

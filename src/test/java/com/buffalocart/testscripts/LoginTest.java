@@ -18,6 +18,7 @@ public class LoginTest extends Base {
     LoginPage login;
     HomePage home;
     SignOutPage signOut;
+    SoftAssert softAssert;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 1, enabled = true, description = "TC_001_VerifyLoginPageTitle", groups = {"Regression"})
@@ -52,13 +53,13 @@ public class LoginTest extends Base {
         extentTest.get().log(Status.PASS, "Actual Username Captured");
         String expectedUserAccountName = home.getExpectedUserAccountName();
         extentTest.get().log(Status.PASS, "Expected Username Captured");
-        SoftAssert softAssert = new SoftAssert();
+        softAssert = new SoftAssert();
         softAssert.assertEquals(actualUserAccountName, expectedUserAccountName, "ERROR : Unsuccessful Login");
-        softAssert.assertAll();
         extentTest.get().log(Status.PASS, "Successfully completed soft assertion");
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "verify Successful login test case passed");
+        softAssert.assertAll();
     }
 
     @Test(priority = 3, enabled = true, description = "TC_003_VerifyTheErrorMessageDisplayedForUserLoginWithInvalidCredentials", groups = {"Regression"})

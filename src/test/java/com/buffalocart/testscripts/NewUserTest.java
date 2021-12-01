@@ -46,11 +46,11 @@ public class NewUserTest extends Base {
         extentTest.get().log(Status.PASS, "Captured Expected Error message for mandatory Field");
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualErrorMessageForMandatoryField,expectedErrorMessageForMandatoryField,"ERROR : Error message for filling Mandatory field mismatch");
-        softAssert.assertAll();
         extentTest.get().log(Status.PASS, "Asserted successfully");
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
+        softAssert.assertAll();
 
 
     }
@@ -94,10 +94,10 @@ public class NewUserTest extends Base {
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualUser,expectedUser,"ERROR : Unsuccessful User creation");
         extentTest.get().log(Status.PASS, "Successfully Asserted actual and expected user names");
-        softAssert.assertAll();
         signOut= home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully logged out");
+        softAssert.assertAll();
     }
     @Test(priority = 15, enabled = true, description = "TC_015_VerifyAddUsersPageTitle", groups = { "Regression"})
     public void verifyAddUsersPageTitle() throws IOException, InterruptedException {
@@ -118,12 +118,11 @@ public class NewUserTest extends Base {
         extentTest.get().log(Status.PASS, "Captured expected add user page title");
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualTitle,expectedTitle,"ERROR : Invalid Add Users Page Title Found");
-        softAssert.assertAll();
         extentTest.get().log(Status.PASS, "successfully asserted add user page title");
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
-
+        softAssert.assertAll();
     }
 
     @Test(priority = 16, enabled = true, description = "TC_016_VerifyUserCanAddUserDetails", groups = { "Regression"})

@@ -17,7 +17,6 @@ public class EditUserTest extends Base {
     HomePage home;
     UserManagementPage userManagementPage;
     UsersPage usersPage;
-    NewUserPage newUserPage;
     SignOutPage signOut;
     EditUserPage editUserPage;
     SoftAssert softAssert;
@@ -47,11 +46,11 @@ public class EditUserTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully captured Expected Edit User Page Title");
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualEditUserPageTitle, expectedEditUserPageTitle, "ERROR : Invalid Edit User Page Title Found");
-        softAssert.assertAll();
         extentTest.get().log(Status.PASS, "Successfully Asserted Actual and Expected Titles");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
+        softAssert.assertAll();
     }
 
     @Test(priority = 18, enabled = true, description = "TC_018_VerifyUserCanEditTheUserDetails  ", groups = {"Regression"})
@@ -83,6 +82,5 @@ public class EditUserTest extends Base {
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
-
     }
 }

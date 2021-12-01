@@ -4,6 +4,7 @@ import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TableUtility;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,8 @@ import java.util.List;
 public class UsersPage extends TestHelperUtility {
     WebDriver driver;
     boolean values;
+    WebElement editButton;
+    WebElement deleteButton;
 
     public UsersPage(WebDriver driver) throws IOException {
         this.driver = driver;
@@ -54,8 +57,8 @@ public class UsersPage extends TestHelperUtility {
     private List<WebElement> colElement;
 
     private final String _EditButton = "//a[@class='btn btn-xs btn-primary']";
-    @FindBy(xpath = _EditButton)
-    private WebElement editButton;
+
+    private final String _deleteButton = "//a[@class='btn btn-xs btn-info']";
 
     public void usersTabClick() throws InterruptedException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, waitUtility.EXPLICIT_WAIT);
@@ -126,36 +129,66 @@ public class UsersPage extends TestHelperUtility {
         return tableUtility.actionData(rowElement, colElement);
     }
 
-    public void getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName) {
+    public boolean getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName) {
         boolean value = false;
         for (int i = 0; i < tableData.size(); i++) {
             if (tableData.get(i).contains(expectedUserName)) {
                 value = true;
+                System.out.println("inside loop");
             }
         }
+        return value;
+    }
+
+    public String getUserToBeDeleted() {
+        return readExcelData.get(10);
     }
 
     public EditUserPage clickOnEditButton(String userName) throws IOException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _EditButton, waitUtility.IMPLICIT_WAIT);
         List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
-        if (values == false) {
+        if (values == false)
             for (int i = 0; i < actionData.size(); i++) {
                 for (int j = 0; j < actionData.get(0).size(); j++) {
-                    if (values == false) {
-                        WebElement data = actionData.get(i).get(j);
-                        String tData = data.getText();
+                    WebElement data = actionData.get(i).get(j);
 
+                    if (values == false) {
+                        String tData = data.getText();
                         if (tData.contains(userName)) {
+                            editButton = driver.findElement(
+                                    By.xpath("//table[@id='users_table']//tbody//tr[" + (i + 1) + "]//td[5]//a[1]"));
                             page.clickOnElement(editButton);
                             values = true;
+                            break;
                         }
                     }
-
                 }
-            }
 
-        }
+            }
         return new EditUserPage(driver);
+    }
+    public DeleteUserPage clickOnDeleteButton(String userName) throws IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _deleteButton, waitUtility.IMPLICIT_WAIT);
+        List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
+        if (values == false)
+            for (int i = 0; i < actionData.size(); i++) {
+                for (int j = 0; j < actionData.get(0).size(); j++) {
+                    WebElement data = actionData.get(i).get(j);
+
+                    if (values == false) {
+                        String tData = data.getText();
+                        if (tData.contains(userName)) {
+                            deleteButton = driver.findElement(
+                                    By.xpath(("//table[@id='users_table']//tbody//tr["+(i+1)+"]//td[5]//button")));
+                            page.clickOnElement(deleteButton);
+                            values = true;
+                            break;
+                        }
+                    }
+                }
+
+            }
+        return new DeleteUserPage(driver);
     }
 
 
