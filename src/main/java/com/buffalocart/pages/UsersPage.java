@@ -18,8 +18,7 @@ import java.util.List;
 public class UsersPage extends TestHelperUtility {
     WebDriver driver;
     boolean values;
-    WebElement editButton;
-    WebElement deleteButton;
+    WebElement editButton,viewButton,deleteButton;
 
     public UsersPage(WebDriver driver) throws IOException {
         this.driver = driver;
@@ -56,9 +55,11 @@ public class UsersPage extends TestHelperUtility {
     @FindBy(xpath = _cElement)
     private List<WebElement> colElement;
 
-    private final String _EditButton = "//a[@class='btn btn-xs btn-primary']";
+    private final String _editButton = "//a[@class='btn btn-xs btn-primary']";
 
     private final String _deleteButton = "//a[@class='btn btn-xs btn-info']";
+
+    private final String _viewButton = "";
 
     public void usersTabClick() throws InterruptedException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, waitUtility.EXPLICIT_WAIT);
@@ -145,7 +146,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public EditUserPage clickOnEditButton(String userName) throws IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _EditButton, waitUtility.IMPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _editButton, waitUtility.IMPLICIT_WAIT);
         List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
         if (values == false)
             for (int i = 0; i < actionData.size(); i++) {
@@ -181,6 +182,29 @@ public class UsersPage extends TestHelperUtility {
                             deleteButton = driver.findElement(
                                     By.xpath(("//table[@id='users_table']//tbody//tr["+(i+1)+"]//td[5]//button")));
                             page.clickOnElement(deleteButton);
+                            values = true;
+                            break;
+                        }
+                    }
+                }
+
+            }
+        return new DeleteUserPage(driver);
+    }
+    public DeleteUserPage clickOnViewButton(String userName) throws IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _viewButton, waitUtility.IMPLICIT_WAIT);
+        List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
+        if (values == false)
+            for (int i = 0; i < actionData.size(); i++) {
+                for (int j = 0; j < actionData.get(0).size(); j++) {
+                    WebElement data = actionData.get(i).get(j);
+
+                    if (values == false) {
+                        String tData = data.getText();
+                        if (tData.contains(userName)) {
+                            viewButton = driver.findElement(
+                                    By.xpath("//table[@id='users_table']//tbody//tr[" + (i + 1) + "]//td[5]//a[2]"));
+                            page.clickOnElement(viewButton);
                             values = true;
                             break;
                         }

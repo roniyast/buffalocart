@@ -11,4 +11,5 @@ public class Constants {
     public static final String SHEET_NAME_NEW_USERS_PAGE = "NewUsers";
     public static final String SHEET_NAME_EDIT_USER_PAGE = "EditUser";
     public static final String SHEET_NAME_DELETE_USER_PAGE = "DeleteUser";
+    public static final String SHEET_NAME_VIEW_USER_PAGE = "ViewUser";
 }
