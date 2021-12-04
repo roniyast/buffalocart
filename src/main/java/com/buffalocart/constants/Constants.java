@@ -12,4 +12,7 @@ public class Constants {
     public static final String SHEET_NAME_EDIT_USER_PAGE = "EditUser";
     public static final String SHEET_NAME_DELETE_USER_PAGE = "DeleteUser";
     public static final String SHEET_NAME_VIEW_USER_PAGE = "ViewUser";
+    public static final String SHEET_NAME_ROLES_PAGE = "Roles";
+    public static final String SHEET_NAME_ADD_ROLES_PAGE = "AddRoles";
+    public static final String SHEET_NAME_UPDATE_ROLES_PAGE = "UpdateRole";
 }

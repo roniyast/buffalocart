@@ -2,6 +2,7 @@ package com.buffalocart.pages;
 
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
+import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,7 @@ public class DeleteUserPage extends TestHelperUtility {
     private WebElement deleteOkButton;
 
     public UsersPage clickOnOkButton() throws IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _deleteOkButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         page.clickOnElement(deleteOkButton);
         return new UsersPage(driver);
     }

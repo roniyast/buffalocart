@@ -39,13 +39,10 @@ public class WaitUtility {
 
         }
     }
-    public void elementToBeClickable(WebDriver driver, Enum locatorType, String target, long explicitWaitUserName) {
-        wait = new WebDriverWait(driver, TimeUnit.SECONDS.toSeconds(EXPLICIT_WAIT_USER_NAME));
-        if (locatorType.equals(LocatorType.Xpath)) {
-            System.out.println(1);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(target)));
+    @Deprecated
+    public void elementToBeClickable(WebDriver driver,  long explicitWaitUserName) {
+            driver.manage().timeouts().implicitlyWait(EXPLICIT_WAIT_USER_NAME,TimeUnit.SECONDS) ;
         }
 
-    }
 
 }

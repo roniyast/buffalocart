@@ -89,10 +89,10 @@ public class UsersTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully Captured expected Invalid User id");
 
         usersPage.enterSearchValue(expectedInvalidUserValue);
-        String actualInvalidUserValue = usersPage.getActualInvalidUserIdAfterSearch();
+        String actualInvalidUserValue = usersPage.getActualInvalidUserMessageAfterSearch();
         extentTest.get().log(Status.PASS, "Successfully Captured actual Invalid  User id after search");
         softAssert = new SoftAssert();
-        softAssert.assertEquals(actualInvalidUserValue, expectedInvalidUserValue, "ERROR : Value after Invalid User search message Mismatch");
+        softAssert.assertEquals(actualInvalidUserValue, usersPage.getExpectedInvalidUserMessageAfterSearch(), "ERROR : Value after Invalid User search message Mismatch");
         signOut=home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed out");

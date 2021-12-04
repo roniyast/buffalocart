@@ -9,10 +9,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class DeleteUserTest extends Base {
+public class UpdateRolesTest extends Base {
     LoginPage loginPage;
     HomePage home;
     UserManagementPage userManagementPage;
@@ -20,13 +18,13 @@ public class DeleteUserTest extends Base {
     DeleteUserPage deleteUserPage;
     SignOutPage signOut;
     EditUserPage editUserPage;
+    RolesPage rolesPage;
+    UpdateRolesPage updateRolesPage;
     SoftAssert softAssert;
 
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-
-    @Test(priority = 19, enabled = true, description = "TC_019_verifyUserCanDeleteUser", groups = {"Regression"})
-    public void verifyUserCanDeleteUser() throws IOException, InterruptedException {
-
+    @Test(priority = 24, enabled = true, description = "TC_024_VerifyEditRolePageTitle", groups = {"Regression"})
+    public void verifyEditRolePageTitle() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
         home = new HomePage(driver);
@@ -35,24 +33,16 @@ public class DeleteUserTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
         usersPage = userManagementPage.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
-        Thread.sleep(6000);
-        extentTest.get().log(Status.PASS, "Successfully clicked User Tab");
-        String userDelete = usersPage.getUserToBeDeleted();
-        Thread.sleep(1000);
-        deleteUserPage = usersPage.clickOnDeleteButton(userDelete);
-        extentTest.get().log(Status.PASS, "Successfully clicked Delete Button");
-        usersPage=deleteUserPage.clickOnOkButton();
-        extentTest.get().log(Status.PASS, "Successfully clicked ok button");
-        List<ArrayList<String>> data=usersPage.getTableDataText();
-        boolean value =usersPage.getTableDataContains(data,usersPage.getUserToBeDeleted());
-        extentTest.get().log(Status.PASS, "Checked for the user after deleting");
+        rolesPage = usersPage.rolesTabClick();
+        updateRolesPage= rolesPage.clickOnUpdateButton(rolesPage.getRoleToUpdateAndDelete());
+        String actualUpdateRolePageTitle= updateRolesPage.getActualUpdateRolePageTitle();
+        String expectedUpdateRolePageTitle=updateRolesPage.getExpectedUpdateRolePageTitle();
         softAssert = new SoftAssert();
-        softAssert.assertFalse(value,"ERROR : User Deletion Unsuccessful");
+        softAssert.assertEquals(actualUpdateRolePageTitle,expectedUpdateRolePageTitle,"ERROR : Invalid Update Users Page Title Found");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
         softAssert.assertAll();
+
     }
 }
-

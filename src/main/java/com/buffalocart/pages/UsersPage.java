@@ -18,7 +18,7 @@ import java.util.List;
 public class UsersPage extends TestHelperUtility {
     WebDriver driver;
     boolean values;
-    WebElement editButton,viewButton,deleteButton;
+    WebElement editButton, viewButton, deleteButton;
 
     public UsersPage(WebDriver driver) throws IOException {
         this.driver = driver;
@@ -57,12 +57,22 @@ public class UsersPage extends TestHelperUtility {
 
     private final String _editButton = "//a[@class='btn btn-xs btn-primary']";
 
-    private final String _deleteButton = "//a[@class='btn btn-xs btn-info']";
+    private final String _deleteButton = "//button[@class='btn btn-xs btn-danger delete_user_button']";
 
-    private final String _viewButton = "";
+    private final String _viewButton = "//a[@class='btn btn-xs btn-info']";
+
+    private final String _usersTab2 = "//i[@class='fa fa-briefcase']/following-sibling::span[@class='title']";
+    @FindBy(xpath = _usersTab2)
+    private WebElement usersTab2Roles;
+
+    public RolesPage rolesTabClick() throws IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab2, WaitUtility.EXPLICIT_WAIT);
+        page.clickOnElement(usersTab2Roles);
+        return new RolesPage(driver);
+    }
 
     public void usersTabClick() throws InterruptedException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, waitUtility.EXPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, WaitUtility.EXPLICIT_WAIT);
         page.clickOnElement(usersTab);
     }
 
@@ -71,12 +81,11 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public String getExpectedUsersPageTitle() {
-        String expectedTitle = readExcelData.get(2);
-        return expectedTitle;
+        return readExcelData.get(2);
     }
 
     public List<String> getActualUsersList() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, waitUtility.EXPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, WaitUtility.EXPLICIT_WAIT);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersSearch);
         List<String> usersList = new ArrayList<>();
         for (int i = 0; i < usersListWebElement.size(); i++) {
@@ -86,11 +95,10 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public String getActualUserIdAfterSearch() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, waitUtility.EXPLICIT_WAIT_USER_NAME);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersSearch, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersSearch);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         if (actualUserValue != " ") {
-            System.out.println("True");
             return actualUserValue;
         } else {
             return " ";
@@ -101,12 +109,16 @@ public class UsersPage extends TestHelperUtility {
         return readExcelData.get(4);
     }
 
-    public String getActualInvalidUserIdAfterSearch() {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersInvalidSearch, waitUtility.EXPLICIT_WAIT);
+    public String getActualInvalidUserMessageAfterSearch() {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersInvalidSearch, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _usersInvalidSearch);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         System.out.println(actualUserValue);
         return actualUserValue;
+    }
+    public String getExpectedInvalidUserMessageAfterSearch() {
+        return readExcelData.get(8);
+
     }
 
     public String getExpectedInvalidUser() {
@@ -123,6 +135,7 @@ public class UsersPage extends TestHelperUtility {
     }
 
     public List<ArrayList<String>> getTableDataText() {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _editButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         return TableUtility.getGridData(rowElement, colElement);
     }
 
@@ -145,15 +158,19 @@ public class UsersPage extends TestHelperUtility {
         return readExcelData.get(10);
     }
 
+    public String getUserToBeViewed() {
+        return readExcelData.get(12);
+    }
+
     public EditUserPage clickOnEditButton(String userName) throws IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _editButton, waitUtility.IMPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _editButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
-        if (values == false)
+        if (!values)
             for (int i = 0; i < actionData.size(); i++) {
                 for (int j = 0; j < actionData.get(0).size(); j++) {
                     WebElement data = actionData.get(i).get(j);
 
-                    if (values == false) {
+                    if (!values) {
                         String tData = data.getText();
                         if (tData.contains(userName)) {
                             editButton = driver.findElement(
@@ -168,19 +185,20 @@ public class UsersPage extends TestHelperUtility {
             }
         return new EditUserPage(driver);
     }
+
     public DeleteUserPage clickOnDeleteButton(String userName) throws IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _deleteButton, waitUtility.IMPLICIT_WAIT);
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _deleteButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
-        if (values == false)
+        if (!values)
             for (int i = 0; i < actionData.size(); i++) {
                 for (int j = 0; j < actionData.get(0).size(); j++) {
                     WebElement data = actionData.get(i).get(j);
 
-                    if (values == false) {
+                    if (!values) {
                         String tData = data.getText();
                         if (tData.contains(userName)) {
                             deleteButton = driver.findElement(
-                                    By.xpath(("//table[@id='users_table']//tbody//tr["+(i+1)+"]//td[5]//button")));
+                                    By.xpath(("//table[@id='users_table']//tbody//tr[" + (i + 1) + "]//td[5]//button")));
                             page.clickOnElement(deleteButton);
                             values = true;
                             break;
@@ -190,16 +208,18 @@ public class UsersPage extends TestHelperUtility {
 
             }
         return new DeleteUserPage(driver);
+
     }
-    public DeleteUserPage clickOnViewButton(String userName) throws IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _viewButton, waitUtility.IMPLICIT_WAIT);
+
+    public ViewUserPage clickOnViewButton(String userName) throws IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _viewButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
-        if (values == false)
+        if (!values)
             for (int i = 0; i < actionData.size(); i++) {
                 for (int j = 0; j < actionData.get(0).size(); j++) {
                     WebElement data = actionData.get(i).get(j);
 
-                    if (values == false) {
+                    if (!values) {
                         String tData = data.getText();
                         if (tData.contains(userName)) {
                             viewButton = driver.findElement(
@@ -212,8 +232,7 @@ public class UsersPage extends TestHelperUtility {
                 }
 
             }
-        return new DeleteUserPage(driver);
+        return new ViewUserPage(driver);
     }
-
 
 }

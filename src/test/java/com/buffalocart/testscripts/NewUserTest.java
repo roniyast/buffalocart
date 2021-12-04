@@ -78,9 +78,8 @@ public class NewUserTest extends Base {
         newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
         extentTest.get().log(Status.PASS, "Successfully Entered User Details");
         usersPage =newUserPage.clickOnSaveButton();
-        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
-        Thread.sleep(6000);
+        Thread.sleep(8000);
         signOut=home.clickOnUserName();
         loginPage=signOut.userAccountSignOutUsingJS();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
