@@ -47,9 +47,10 @@ public class AddRolesTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
         softAssert.assertAll();
     }
-    @Test(priority = 23, enabled = true, description = "TC_023_VerifyUserCanAddRoles", groups = {"Regression"})
+    @Test(priority = 23, enabled = true, description = "TC_023_VerifyUserCanAddRoles", groups = {"Smoke","Sanity","Regression"})
     public void VerifyUserCanAddRoles() throws IOException, InterruptedException {
-
+        extentTest.get().assignCategory("Smoke");
+        extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
         home = new HomePage(driver);
@@ -62,18 +63,15 @@ public class AddRolesTest extends Base {
         addRolesPage=rolesPage.addRolesButtonClick();
         addRolesPage.enterRoleName(addRolesPage.getUserRole());
         addRolesPage.clickOnUserPermissionSelectAllCheckbox();
-        addRolesPage.clickOnSupplierPermissionSelectAllCheckbox();
-        addRolesPage.clickOnRolesPermissionSelectAllCheckbox();
-        addRolesPage.clickOnCustomerPermissionSelectAllCheckbox();
-       /* addRolesPage.clickOnSaveButton();
-
-
+        rolesPage=addRolesPage.clickOnSaveButton();
+        Thread.sleep(6000);
+        boolean value =rolesPage.getTableDataContains(rolesPage.getTableDataText(), rolesPage.getRoleToUpdateAndDelete());
         softAssert= new SoftAssert();
-        //softAssert.assertEquals(actualAddUserTitle,expectedAddUserTitle,"ERROR : Invalid Add Users Page Title Found");
+        softAssert.assertTrue(value,"ERROR : Successfully inserted Roles");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
-        softAssert.assertAll();*/
+        softAssert.assertAll();
     }
 
 

@@ -10,43 +10,43 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-public class RolesTest extends Base {
+public class DeleteSalesCommissionAgentTest extends Base {
     LoginPage loginPage;
     HomePage home;
     UserManagementPage userManagementPage;
-    UsersPage usersPage;
-    DeleteUserPage deleteUserPage;
     SignOutPage signOut;
-    EditUserPage editUserPage;
-    RolesPage rolesPage;
-    AddRolesPage addRolesPage;
+    UsersPage usersPage;
     SoftAssert softAssert;
-
+    SalesCommissionAgentPage salesCommissionPage;
+    DeleteSalesCommissionAgentPage deleteSalesCommissionAgentPage;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 21, enabled = true, description = "TC_021_verifyAddRolesPageTitle", groups = {"Smoke","Sanity","Regression"})
-    public void verifyRolesPageTitle() throws IOException, InterruptedException {
 
-        extentTest.get().assignCategory("Smoke");
+    @Test(priority = 31, enabled = true, description = "TC_031_verifyUserCanDeleteASalesCommissionAgents", groups = {"Sanity","Regression"})
+    public void verifyUserCanDeleteASalesCommissionAgents() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
         home = new HomePage(driver);
-        editUserPage = new EditUserPage(driver);
+
         userManagementPage = loginPage.successfulLoginUserManagementPage();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
         usersPage = userManagementPage.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        rolesPage = usersPage.rolesTabClick();
-        String actualRolesPageTitle = rolesPage.getActualRolesPageTitle();
-        String expectedRolesPageTitle = rolesPage.getExpectedRolesPageTitle();
-        softAssert = new SoftAssert();
-        softAssert.assertEquals(actualRolesPageTitle, expectedRolesPageTitle, "ERROR : Invalid Roles Page Title Found");
+        Thread.sleep(200);
+        salesCommissionPage = usersPage.salesCommissionTabClick();
+        Thread.sleep(6000);
+        deleteSalesCommissionAgentPage = salesCommissionPage.clickOnDeleteButton(salesCommissionPage.getSCAgentToUpdate());
+        Thread.sleep(6000);
+        salesCommissionPage = deleteSalesCommissionAgentPage.clickOnOkButton();
+        Thread.sleep(6000);
+        boolean value =salesCommissionPage.getTableDataContains(salesCommissionPage.getActualUsersList(), salesCommissionPage.getSCAgentToUpdate());
+        softAssert= new SoftAssert();
+        softAssert.assertFalse(value,"ERROR : Deletion Unsuccessful");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
         softAssert.assertAll();
+
     }
-
-
 }

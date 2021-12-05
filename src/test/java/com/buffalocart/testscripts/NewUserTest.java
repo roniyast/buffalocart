@@ -124,7 +124,7 @@ public class NewUserTest extends Base {
         softAssert.assertAll();
     }
 
-    @Test(priority = 16, enabled = true, description = "TC_016_VerifyUserCanAddUserDetails", groups = { "Regression"})
+    @Test(priority = 16, enabled = true, description = "TC_016_VerifyUserCanAddUserDetails", groups = { "Smoke","Sanity","Regression"})
     public void verifyUserCanAddUserDetails() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Sanity");

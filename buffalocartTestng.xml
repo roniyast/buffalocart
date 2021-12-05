@@ -82,14 +82,41 @@
             <class name="com.buffalocart.testscripts.AddRolesTest">
                 <methods>
                     <exclude name="verifyAddRolesPageTitle"/>
-                    <exclude name="VerifyUserCanAddRoles"/>
+                    <include name="VerifyUserCanAddRoles"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UpdateRolesTest">
                 <methods>
-                    <include name="verifyEditRolePageTitle"/>
+                    <exclude name="verifyEditRolePageTitle"/>
+                    <exclude name="verifyUserCanUpdateARole "/>
                 </methods>
             </class>
+            <class name="com.buffalocart.testscripts.DeleteRolesTest">
+                <methods>
+                    <exclude name="verifyUserCanDeleteARoleFromTheList"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.SalesCommissionAgentTest">
+                <methods>
+                    <exclude name="verifySalesCommissionAgentsPageTitle"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.AddSalesCommissionAgentsTest">
+                <methods>
+                    <exclude name="verifyUserCanAddSalesAgent"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.UpdateSalesCommissionAgentTest">
+                <methods>
+                    <exclude name="verifyEditSalesAgentDetails"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.DeleteSalesCommissionAgentTest">
+                <methods>
+                    <exclude name="verifyUserCanDeleteASalesCommissionAgents"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>

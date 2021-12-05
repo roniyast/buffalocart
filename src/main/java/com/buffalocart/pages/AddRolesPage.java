@@ -79,6 +79,7 @@ public class AddRolesPage extends TestHelperUtility {
     public void clickOnCustomerPermissionSelectAllCheckbox() {
         page.clickOnElement(customerSelectAll);
     }
+
     public RolesPage clickOnSaveButton() throws IOException {
         page.clickOnElement(saveButton);
         return new RolesPage(driver);

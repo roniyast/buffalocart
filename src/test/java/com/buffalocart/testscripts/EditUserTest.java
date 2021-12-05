@@ -23,9 +23,9 @@ public class EditUserTest extends Base {
 
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 17, enabled = true, description = "TC_017_VerifyEditUserPageTitle", groups = {"Regression"})
+    @Test(priority = 17, enabled = true, description = "TC_017_VerifyEditUserPageTitle", groups = {"Sanity","Regression"})
     public void verifyEditUserPageTitle() throws IOException, InterruptedException {
-
+        extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
         home = new HomePage(driver);
@@ -53,9 +53,10 @@ public class EditUserTest extends Base {
         softAssert.assertAll();
     }
 
-    @Test(priority = 18, enabled = true, description = "TC_018_VerifyUserCanEditTheUserDetails  ", groups = {"Regression"})
+    @Test(priority = 18, enabled = true, description = "TC_018_VerifyUserCanEditTheUserDetails  ", groups = {"Sanity","Regression"})
     public void verifyUserCanEditTheUserDetails() throws IOException, InterruptedException {
 
+        extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
         home = new HomePage(driver);

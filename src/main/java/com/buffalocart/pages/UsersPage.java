@@ -65,15 +65,29 @@ public class UsersPage extends TestHelperUtility {
     @FindBy(xpath = _usersTab2)
     private WebElement usersTab2Roles;
 
+    private final String _usersTab3 = "//i[@class='fa fa-handshake-o']/following-sibling::span[@class='title']";
+    @FindBy(xpath = _usersTab3)
+    private WebElement usersTab3Roles;
+
     public RolesPage rolesTabClick() throws IOException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab2, WaitUtility.EXPLICIT_WAIT);
         page.clickOnElement(usersTab2Roles);
         return new RolesPage(driver);
     }
 
-    public void usersTabClick() throws InterruptedException {
+    public void usersTabClick() throws InterruptedException, IOException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, WaitUtility.EXPLICIT_WAIT);
         page.clickOnElement(usersTab);
+    }
+    public SalesCommissionAgentPage SCATabClick() throws IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab2, WaitUtility.EXPLICIT_WAIT);
+        page.clickOnElement(usersTab2Roles);
+        return new SalesCommissionAgentPage(driver);
+    }
+    public SalesCommissionAgentPage salesCommissionTabClick() throws InterruptedException, IOException {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, WaitUtility.EXPLICIT_WAIT);
+        page.clickOnElement(usersTab3Roles);
+        return new SalesCommissionAgentPage(driver);
     }
 
     public String getActualUsersPageTitle() {

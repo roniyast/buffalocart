@@ -10,43 +10,45 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-public class RolesTest extends Base {
+public class UpdateSalesCommissionAgentTest extends Base {
     LoginPage loginPage;
     HomePage home;
     UserManagementPage userManagementPage;
-    UsersPage usersPage;
-    DeleteUserPage deleteUserPage;
     SignOutPage signOut;
-    EditUserPage editUserPage;
-    RolesPage rolesPage;
-    AddRolesPage addRolesPage;
+    UsersPage usersPage;
     SoftAssert softAssert;
-
+    SalesCommissionAgentPage salesCommissionPage;
+    UpdateSalesCommissionAgentPage updateSalesCommissionAgentPage;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 21, enabled = true, description = "TC_021_verifyAddRolesPageTitle", groups = {"Smoke","Sanity","Regression"})
-    public void verifyRolesPageTitle() throws IOException, InterruptedException {
 
+    @Test(priority = 30, enabled = true, description = "TC_030_verifyEditSalesAgentDetails", groups = {"Smoke","Regression"})
+    public void verifyEditSalesAgentDetails() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
-        extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
         home = new HomePage(driver);
-        editUserPage = new EditUserPage(driver);
+
         userManagementPage = loginPage.successfulLoginUserManagementPage();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
         usersPage = userManagementPage.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        rolesPage = usersPage.rolesTabClick();
-        String actualRolesPageTitle = rolesPage.getActualRolesPageTitle();
-        String expectedRolesPageTitle = rolesPage.getExpectedRolesPageTitle();
+        Thread.sleep(200);
+        salesCommissionPage = usersPage.salesCommissionTabClick();
+        Thread.sleep(6000);
+        updateSalesCommissionAgentPage = salesCommissionPage.clickOnEditButton(salesCommissionPage.getSCAgentToUpdate());
+        Thread.sleep(6000);
+        updateSalesCommissionAgentPage.updateSCAValue();
+        salesCommissionPage=updateSalesCommissionAgentPage.saveButtonclick();
+        boolean value =salesCommissionPage.getTableDataContains
+                (salesCommissionPage.getActualAllValueList(),
+                        updateSalesCommissionAgentPage.getExpectedSCAValuetoUpdate());
         softAssert = new SoftAssert();
-        softAssert.assertEquals(actualRolesPageTitle, expectedRolesPageTitle, "ERROR : Invalid Roles Page Title Found");
+        softAssert.assertTrue(value,"ERROR : Updating Sales commission Agent is unsuccessful");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
         softAssert.assertAll();
+
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.buffalocart.pages;
 
 import com.buffalocart.constants.Constants;
+import com.buffalocart.utilities.TableUtility;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.By;
@@ -21,7 +22,6 @@ public class RolesPage extends TestHelperUtility {
     public RolesPage (WebDriver driver) throws IOException {
         this.driver= driver;
         PageFactory.initElements(driver,this);
-
     }
 
     private final String _addRolesButton="//a[@class='btn btn-block btn-primary']";
@@ -56,6 +56,19 @@ public class RolesPage extends TestHelperUtility {
 
     public String getRoleToUpdateAndDelete(){
         return readExcelData.get(4);
+    }
+    public List<ArrayList<String>> getTableDataText() {
+        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _updateRolesButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
+        return TableUtility.getGridData(rowElement, colElement);
+    }
+    public boolean getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName) {
+        boolean value = false;
+        for (int i = 0; i < tableData.size(); i++) {
+            if (tableData.get(i).contains(expectedUserName)) {
+                value = true;
+            }
+        }
+        return value;
     }
 
     public UpdateRolesPage clickOnUpdateButton(String userName) throws IOException {
@@ -94,7 +107,7 @@ public class RolesPage extends TestHelperUtility {
                         String tData = data.getText();
                         if (tData.contains(userName)) {
                             deleteRolesButton = driver.findElement(
-                                    By.xpath(("//table[@id='users_table']//tbody//tr[" + (i + 1) + "]//td[5]//button")));
+                                    By.xpath(("//table[@id='roles_table']//tbody//tr["+(i + 1) +"]//td//button")));
                             page.clickOnElement(deleteRolesButton);
                             values = true;
                             break;
@@ -104,6 +117,6 @@ public class RolesPage extends TestHelperUtility {
 
             }
         return new DeleteRolesPage(driver);
-
     }
+
 }
