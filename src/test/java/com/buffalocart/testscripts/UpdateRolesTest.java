@@ -76,7 +76,7 @@ public class UpdateRolesTest extends Base {
         String actualValue=updateRolesPage.getActualStatus();
         String expectedValue = updateRolesPage.getExpectedStatus();
         softAssert = new SoftAssert();
-        softAssert.assertEquals(actualValue,expectedValue,"ERROR : Updation Failure");
+        softAssert.assertEquals(actualValue,expectedValue,"ERROR : Updating Failure");
         extentTest.get().log(Status.PASS, "Successfully Asserted for the updated roles in the roles page");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
