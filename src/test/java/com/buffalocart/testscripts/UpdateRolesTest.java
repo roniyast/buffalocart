@@ -14,7 +14,6 @@ public class UpdateRolesTest extends Base {
     LoginPage loginPage;
     UserPage home;
     UserManagementPage userManagementPage;
-    UsersPage usersPage;
     SignOutPage signOut;
     RolesPage rolesPage;
     UpdateRolesPage updateRolesPage;
