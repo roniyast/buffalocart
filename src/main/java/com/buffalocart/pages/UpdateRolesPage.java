@@ -30,7 +30,7 @@ public class UpdateRolesPage extends TestHelperUtility {
     private WebElement updateButton;
 
 
-    public void clickOnRolesPermissionSelectAllCheckbox() {
+    public void clickOnRolesPermission() {
         page.clickOnElement(selectRoles);
     }
     public String getActualUpdateRolePageTitle(){

@@ -67,7 +67,7 @@ public class UpdateRolesTest extends Base {
         updateRolesPage = rolesPage.clickOnUpdateButton(rolesPage.getRoleToUpdateAndDelete());
         extentTest.get().log(Status.PASS, "Successfully navigated to the edit roles page");
         Thread.sleep(6000);
-        updateRolesPage.clickOnRolesPermissionSelectAllCheckbox();
+        updateRolesPage.clickOnRolesPermission();
         Thread.sleep(100);
         rolesPage=updateRolesPage.clickOnUpdateButton();
         updateRolesPage = rolesPage.clickOnUpdateButton(rolesPage.getRoleToUpdateAndDelete());

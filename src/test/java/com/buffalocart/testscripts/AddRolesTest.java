@@ -69,13 +69,12 @@ public class AddRolesTest extends Base {
         extentTest.get().log(Status.PASS, "Successfully clicked Roles Tab");
         addRolesPage=rolesPage.addRolesButtonClick();
         addRolesPage.enterRoleName(addRolesPage.getUserRole());
-        addRolesPage.clickOnUserPermissionSelectAllCheckbox();
         rolesPage=addRolesPage.clickOnSaveButton();
         extentTest.get().log(Status.PASS, "Successfully entered New roles details and clicked save button");
         Thread.sleep(6000);
         boolean value =rolesPage.getTableDataContains(rolesPage.getTableDataText(), rolesPage.getRoleToUpdateAndDelete());
         softAssert= new SoftAssert();
-        softAssert.assertTrue(value,"ERROR : Successfully inserted Roles");
+        softAssert.assertTrue(value,"ERROR :Role Insertion Unsuccessful");
         extentTest.get().log(Status.PASS, "Successfully Asserted for the newly added role in roles page");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
