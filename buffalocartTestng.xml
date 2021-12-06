@@ -14,7 +14,7 @@
                </run>
            </groups>-->
         <classes>
-             <!--<class name="com.buffalocart.testscripts.LoginTest">
+             <class name="com.buffalocart.testscripts.LoginTest">
                  <methods>
                      <include name="verifyLoginPageTitle"/>
                      <include name="verifyUserLoginWithValidUserCredentials"/>
@@ -27,18 +27,18 @@
                      <include name="verifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
                  </methods>
              </class>
-             <class name="com.buffalocart.testscripts.HomeTest">
+             <class name="com.buffalocart.testscripts.UserTest">
                  <methods>
                      <include name="verifyHomePageTitle"/>
                      <include name="verifyDateDisplayedInHomePage"/>
                  </methods>
              </class>
-             <class name="com.buffalocart.testscripts.SignOutTest">
+            <class name="com.buffalocart.testscripts.SignOutTest">
                  <methods>
                      <include name="verifyWhetherUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
                  </methods>
              </class>
-             <class name="com.buffalocart.testscripts.UserManagementTest">
+            <class name="com.buffalocart.testscripts.UserManagementTest">
                  <methods>
                      <include name="verifyTheUserManagementSubTabs"/>
                  </methods>
@@ -50,7 +50,7 @@
                      <include name="verifyMessageDisplayedByUserSearchWithInvalidData"/>
                  </methods>
              </class>
-            <class name="com.buffalocart.testscripts.NewUserTest">
+            <class name="com.buffalocart.testscripts.AddUserTest">
                 <methods>
                     <include name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
                     <include name="verifyUserLoginWithNewlyAddedUser"/>
@@ -58,7 +58,7 @@
                     <include name="verifyUserCanAddUserDetails"/>
                 </methods>
             </class>
-            <class name="com.buffalocart.testscripts.EditUserTest">
+           <class name="com.buffalocart.testscripts.UpdateUserTest">
                 <methods>
                     <include name="verifyEditUserPageTitle"/>
                     <include name="verifyUserCanEditTheUserDetails"/>
@@ -69,7 +69,7 @@
                     <include name="verifyUserCanDeleteUser"/>
                 </methods>
             </class>
-            <class name="com.buffalocart.testscripts.ViewUserTest">
+           <class name="com.buffalocart.testscripts.ViewUserTest">
                 <methods>
                     <include name="verifyTheDetailsDisplayedOnViewUserPage"/>
                 </methods>
@@ -77,46 +77,46 @@
             <class name="com.buffalocart.testscripts.RolesTest">
                 <methods>
                     <include name="verifyRolesPageTitle"/>
+                    <include name ="verifyWhetherTheAddedRoleInRolePageIsListedInRolesFieldInUserAddPage"/>
                 </methods>
-            </class>-->
+            </class>
             <class name="com.buffalocart.testscripts.AddRolesTest">
                 <methods>
-                    <exclude name="verifyAddRolesPageTitle"/>
-                    <include name="VerifyUserCanAddRoles"/>
+                    <include name="verifyAddRolesPageTitle"/>
+                    <include name="verifyUserCanAddRoles"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UpdateRolesTest">
                 <methods>
-                    <exclude name="verifyEditRolePageTitle"/>
-                    <exclude name="verifyUserCanUpdateARole "/>
+                    <include name="verifyEditRolePageTitle"/>
+                    <include name="verifyUserCanUpdateARole"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.DeleteRolesTest">
                 <methods>
-                    <exclude name="verifyUserCanDeleteARoleFromTheList"/>
+                    <include name="verifyUserCanDeleteARoleFromTheList"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.SalesCommissionAgentTest">
                 <methods>
-                    <exclude name="verifySalesCommissionAgentsPageTitle"/>
+                    <include name="verifySalesCommissionAgentsPageTitle"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.AddSalesCommissionAgentsTest">
                 <methods>
-                    <exclude name="verifyUserCanAddSalesAgent"/>
+                    <include name="verifyUserCanAddSalesAgent"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UpdateSalesCommissionAgentTest">
                 <methods>
-                    <exclude name="verifyEditSalesAgentDetails"/>
+                    <include name="verifyEditSalesAgentDetails"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.DeleteSalesCommissionAgentTest">
                 <methods>
-                    <exclude name="verifyUserCanDeleteASalesCommissionAgents"/>
+                    <include name="verifyUserCanDeleteASalesCommissionAgents"/>
                 </methods>
             </class>
-
         </classes>
     </test>
 </suite>

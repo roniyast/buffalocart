@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewUserTest extends Base {
+public class AddUserTest extends Base {
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     UsersPage usersPage;
-    NewUserPage newUserPage;
+    AddUserPage addUserPage;
     SignOutPage signOut;
     SoftAssert softAssert;
 
@@ -28,21 +28,22 @@ public class NewUserTest extends Base {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home= new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage=userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
-        newUserPage=usersPage.clickOnNewUser();
+
+        addUserPage =usersPage.clickOnNewUser();
         extentTest.get().log(Status.PASS, "Successfully clicked New User Add Button");
-        newUserPage.clickOnSaveButton();
-        newUserPage.clickOnToastMessage();
+        addUserPage.clickOnSaveButton();
+        addUserPage.clickOnToastMessage();
         extentTest.get().log(Status.PASS, "Successfully clicked Save Button");
-        String actualErrorMessageForMandatoryField = newUserPage.getActualErrorMessageForMandatoryField();
+        String actualErrorMessageForMandatoryField = addUserPage.getActualErrorMessageForMandatoryField();
         extentTest.get().log(Status.PASS, "Captured Actual Error message for mandatory Field");
-        String expectedErrorMessageForMandatoryField = newUserPage.getExpectedErrorMessageForMandatoryField();
+        String expectedErrorMessageForMandatoryField = addUserPage.getExpectedErrorMessageForMandatoryField();
         extentTest.get().log(Status.PASS, "Captured Expected Error message for mandatory Field");
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualErrorMessageForMandatoryField,expectedErrorMessageForMandatoryField,"ERROR : Error message for filling Mandatory field mismatch");
@@ -59,37 +60,37 @@ public class NewUserTest extends Base {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home= new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage=userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
-        newUserPage = usersPage.clickOnNewUser();
+        addUserPage = usersPage.clickOnNewUser();
         extentTest.get().log(Status.PASS, "Successfully clicked Add new user");
-        newUserPage.enterPrefix(newUserPage.getPrefix());
-        newUserPage.enterFirstName(newUserPage.getFirstName());
-        newUserPage.enterLastName(newUserPage.getLastName());
-        newUserPage.enterEmail(newUserPage.getEmail());
-        newUserPage.selectRole();
-        newUserPage.enterUserName(newUserPage.getUserName());
-        newUserPage.enterPassword(newUserPage.getPassword());
-        newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
+        addUserPage.enterPrefix(addUserPage.getPrefix());
+        addUserPage.enterFirstName(addUserPage.getFirstName());
+        addUserPage.enterLastName(addUserPage.getLastName());
+        addUserPage.enterEmail(addUserPage.getEmail());
+        addUserPage.selectRole();
+        addUserPage.enterUserName(addUserPage.getUserName());
+        addUserPage.enterPassword(addUserPage.getPassword());
+        addUserPage.enterConfirmPassWord(addUserPage.getConfirmPassword());
         extentTest.get().log(Status.PASS, "Successfully Entered User Details");
-        usersPage =newUserPage.clickOnSaveButton();
+        usersPage = addUserPage.clickOnSaveButton();
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
         Thread.sleep(8000);
         signOut=home.clickOnUserName();
         loginPage=signOut.userAccountSignOutUsingJS();
         extentTest.get().log(Status.PASS, "Successfully Signed out");
-        loginPage.enterUserNameLogin(NewUserPage.getNewUserName());
-        loginPage.enterPasswordLogin(newUserPage.getPassword());
+        loginPage.enterUserNameLogin(AddUserPage.getNewUserName());
+        loginPage.enterPasswordLogin(addUserPage.getPassword());
         extentTest.get().log(Status.PASS, "New user credentials entered");
         home=loginPage.loginButtonClick();
         extentTest.get().log(Status.PASS, "Successfully logged back in with newly created user");
         String actualUser= home.getActualUserAccountName();
-        String expectedUser= newUserPage.getNewUserHomePage();
+        String expectedUser= addUserPage.getNewUserHomePage();
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualUser,expectedUser,"ERROR : Unsuccessful User creation");
         extentTest.get().log(Status.PASS, "Successfully Asserted actual and expected user names");
@@ -103,17 +104,17 @@ public class NewUserTest extends Base {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage = userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
-        newUserPage = usersPage.clickOnNewUser();
-        String actualTitle =newUserPage.getActualPageTitle();
+        addUserPage = usersPage.clickOnNewUser();
+        String actualTitle = addUserPage.getActualPageTitle();
         extentTest.get().log(Status.PASS, "Captured actual add user page title");
-        String expectedTitle=newUserPage.getPageExpectedTitle();
+        String expectedTitle= addUserPage.getPageExpectedTitle();
         extentTest.get().log(Status.PASS, "Captured expected add user page title");
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualTitle,expectedTitle,"ERROR : Invalid Add Users Page Title Found");
@@ -126,31 +127,33 @@ public class NewUserTest extends Base {
 
     @Test(priority = 16, enabled = true, description = "TC_016_VerifyUserCanAddUserDetails", groups = { "Smoke","Sanity","Regression"})
     public void verifyUserCanAddUserDetails() throws IOException, InterruptedException {
+
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
+
         loginPage = new LoginPage(driver);
-        home= new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage=userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
-        newUserPage = usersPage.clickOnNewUser();
-        newUserPage.enterPrefix(newUserPage.getPrefix());
-        newUserPage.enterFirstName(newUserPage.getFirstName());
-        newUserPage.enterLastName(newUserPage.getLastName());
-        newUserPage.enterEmail(newUserPage.getEmail());
-        newUserPage.selectRole();
-        newUserPage.enterUserName(newUserPage.getUserName());
-        newUserPage.enterPassword(newUserPage.getPassword());
-        newUserPage.enterConfirmPassWord(newUserPage.getConfirmPassword());
+        addUserPage = usersPage.clickOnNewUser();
+        addUserPage.enterPrefix(addUserPage.getPrefix());
+        addUserPage.enterFirstName(addUserPage.getFirstName());
+        addUserPage.enterLastName(addUserPage.getLastName());
+        addUserPage.enterEmail(addUserPage.getEmail());
+        addUserPage.selectRole();
+        addUserPage.enterUserName(addUserPage.getUserName());
+        addUserPage.enterPassword(addUserPage.getPassword());
+        addUserPage.enterConfirmPassWord(addUserPage.getConfirmPassword());
         extentTest.get().log(Status.PASS, "Successfully Entered User Details");
-        usersPage=newUserPage.clickOnSaveButton();
+        usersPage= addUserPage.clickOnSaveButton();
         extentTest.get().log(Status.PASS, "Successfully clicked Save button");
         Thread.sleep(6000);
-        String expectedUserName= NewUserPage.getNewUserName();
+        String expectedUserName= AddUserPage.getNewUserName();
         List<ArrayList<String>> tableData = usersPage.getTableDataText();
         usersPage.getTableDataContains(tableData,expectedUserName);
         extentTest.get().log(Status.PASS, "Checked for the newly enetered data in table ");

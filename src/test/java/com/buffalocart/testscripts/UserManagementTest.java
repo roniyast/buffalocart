@@ -4,7 +4,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
-import com.buffalocart.pages.HomePage;
+import com.buffalocart.pages.UserPage;
 import com.buffalocart.pages.LoginPage;
 import com.buffalocart.pages.SignOutPage;
 import com.buffalocart.pages.UserManagementPage;
@@ -17,7 +17,7 @@ import java.util.List;
 public class UserManagementTest extends Base {
 
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     SignOutPage signOut;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
@@ -29,13 +29,16 @@ public class UserManagementTest extends Base {
 
         loginPage = new LoginPage(driver);
         signOut = new SignOutPage(driver);
-        home = new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = new UserPage(driver);
+        home =loginPage.successfulLoginHomePage();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
+        home.clickOnEndTour();
+        Thread.sleep(3000);
+        userManagementPage=home.userManagementTabClick();
+        extentTest.get().log(Status.PASS, "Successfully Clicked into User Management Tab");
         List<String> expectedUserManagementSubTabs = userManagementPage.getExpectedUserManagementSubTabsText();
         extentTest.get().log(Status.PASS, "Successfully captured Expected User Management Tab Values");
-        userManagementPage.userManagementTabClick();
-        extentTest.get().log(Status.PASS, "Successfully Clicked into User Management Tab");
+
         List<String> actualUserManagementSubTabs = userManagementPage.getActualUserManagementSubTabsText();
         extentTest.get().log(Status.PASS, "Successfully captured Actual User Management Tab Values");
         softAssert = new SoftAssert();

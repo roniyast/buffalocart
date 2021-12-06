@@ -12,11 +12,11 @@ import java.io.IOException;
 
 public class ViewUserTest extends Base {
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     UsersPage usersPage;
     ViewUserPage viewUserPage;
-    EditUserPage editUserPage;
+    UpdateUserPage updateUserPage;
     SignOutPage signOut;
     SoftAssert softAssert;
 
@@ -27,15 +27,14 @@ public class ViewUserTest extends Base {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        editUserPage = new EditUserPage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage = userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
         Thread.sleep(6000);
-        extentTest.get().log(Status.PASS, "Successfully clicked User Tab");
         String userToBeViewed = usersPage.getUserToBeViewed();
         viewUserPage = usersPage.clickOnViewButton(userToBeViewed);
         extentTest.get().log(Status.PASS, "Successfully clicked the view button");

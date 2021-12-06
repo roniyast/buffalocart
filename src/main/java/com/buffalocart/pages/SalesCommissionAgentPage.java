@@ -32,7 +32,7 @@ public class SalesCommissionAgentPage extends TestHelperUtility {
     @FindBy(xpath = _SCASearch)
     private WebElement SCASearch;
 
-    private final String _SCASearchEmail = "//table[@id='sales_commission_agent_table']//tr/td";
+    private final String _SCASearchEmail = "//table[@id='sales_commission_agent_table']//tr//td";
     @FindBy(xpath = _SCASearchEmail)
     private WebElement SCASearchEmail;
 
@@ -105,13 +105,18 @@ public class SalesCommissionAgentPage extends TestHelperUtility {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _editButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
         if (!values)
+            System.out.println("Inside If");
             for (int i = 0; i < actionData.size(); i++) {
+                System.out.println("Inside i");
                 for (int j = 0; j < actionData.get(0).size(); j++) {
+                    System.out.println("Inside j");
                     WebElement data = actionData.get(i).get(j);
 
                     if (!values) {
                         String tData = data.getText();
+                        System.out.println(tData);
                         if (tData.contains(userName)) {
+                            System.out.println("inside loop");
                             editButton = driver.findElement(
                                     By.xpath("//table[@id='sales_commission_agent_table']//tbody//tr[" + (i + 1) + "]//td[6]//button[1]"));
                             page.clickOnElement(editButton);

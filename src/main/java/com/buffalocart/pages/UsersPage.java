@@ -27,10 +27,6 @@ public class UsersPage extends TestHelperUtility {
 
     List<String> readExcelData = excel.readExcel(Constants.EXCEL_FILE_PATH, Constants.SHEET_NAME_USERS_PAGE);
 
-    private final String _usersTab1 = "//i[@class='fa fa-user']/following-sibling::span[@class='title']";
-    @FindBy(xpath = _usersTab1)
-    private WebElement usersTab;
-
     private final String _userValueSearch = "//input[@class='form-control input-sm']";
     @FindBy(xpath = _userValueSearch)
     private WebElement userValueSearch;
@@ -61,34 +57,6 @@ public class UsersPage extends TestHelperUtility {
 
     private final String _viewButton = "//a[@class='btn btn-xs btn-info']";
 
-    private final String _usersTab2 = "//i[@class='fa fa-briefcase']/following-sibling::span[@class='title']";
-    @FindBy(xpath = _usersTab2)
-    private WebElement usersTab2Roles;
-
-    private final String _usersTab3 = "//i[@class='fa fa-handshake-o']/following-sibling::span[@class='title']";
-    @FindBy(xpath = _usersTab3)
-    private WebElement usersTab3Roles;
-
-    public RolesPage rolesTabClick() throws IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab2, WaitUtility.EXPLICIT_WAIT);
-        page.clickOnElement(usersTab2Roles);
-        return new RolesPage(driver);
-    }
-
-    public void usersTabClick() throws InterruptedException, IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, WaitUtility.EXPLICIT_WAIT);
-        page.clickOnElement(usersTab);
-    }
-    public SalesCommissionAgentPage SCATabClick() throws IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab2, WaitUtility.EXPLICIT_WAIT);
-        page.clickOnElement(usersTab2Roles);
-        return new SalesCommissionAgentPage(driver);
-    }
-    public SalesCommissionAgentPage salesCommissionTabClick() throws InterruptedException, IOException {
-        waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _usersTab1, WaitUtility.EXPLICIT_WAIT);
-        page.clickOnElement(usersTab3Roles);
-        return new SalesCommissionAgentPage(driver);
-    }
 
     public String getActualUsersPageTitle() {
         return page.getPageTitle(driver);
@@ -143,9 +111,9 @@ public class UsersPage extends TestHelperUtility {
         page.enterText(userValueSearch, value);
     }
 
-    public NewUserPage clickOnNewUser() throws IOException {
+    public AddUserPage clickOnNewUser() throws IOException {
         page.clickOnElement(newUserAdd);
-        return new NewUserPage(driver);
+        return new AddUserPage(driver);
     }
 
     public List<ArrayList<String>> getTableDataText() {
@@ -176,7 +144,7 @@ public class UsersPage extends TestHelperUtility {
         return readExcelData.get(12);
     }
 
-    public EditUserPage clickOnEditButton(String userName) throws IOException {
+    public UpdateUserPage clickOnEditButton(String userName) throws IOException {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Xpath, _editButton, WaitUtility.EXPLICIT_WAIT_USER_NAME);
         List<ArrayList<WebElement>> actionData = tableUtility.actionData(rowElement, colElement);
         if (!values)
@@ -197,7 +165,7 @@ public class UsersPage extends TestHelperUtility {
                 }
 
             }
-        return new EditUserPage(driver);
+        return new UpdateUserPage(driver);
     }
 
     public DeleteUserPage clickOnDeleteButton(String userName) throws IOException {

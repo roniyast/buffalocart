@@ -4,7 +4,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
-import com.buffalocart.pages.HomePage;
+import com.buffalocart.pages.UserPage;
 import com.buffalocart.pages.LoginPage;
 import com.buffalocart.pages.SignOutPage;
 import org.testng.Assert;
@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class LoginTest extends Base {
     LoginPage login;
-    HomePage home;
+    UserPage home;
     SignOutPage signOut;
     SoftAssert softAssert;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
@@ -70,10 +70,8 @@ public class LoginTest extends Base {
         extentTest.get().log(Status.PASS, "Expected Invalid Login page Username Captured");
         login.enterInvalidPasswordLogin(login.getInvalidPasswordLogin());
         extentTest.get().log(Status.PASS, "Expected invalid Login page Password Captured");
-        login.RememberMeLoginCheck("TRUE");
-
+        login.RememberMeLoginCheck(login.getExpectedRememberMeCheckBoxStatus());
         login.loginButtonClick();
-
         String actualInvalidUserMessage = login.getActualInvalidUserMessage();
         String expectedInvalidUserMessage = login.getExpectedInvalidUserMessage();
         Assert.assertEquals(actualInvalidUserMessage, expectedInvalidUserMessage, "ERROR : Invalid user message not matching");

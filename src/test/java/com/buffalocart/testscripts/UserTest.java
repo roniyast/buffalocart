@@ -4,7 +4,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
-import com.buffalocart.pages.HomePage;
+import com.buffalocart.pages.UserPage;
 import com.buffalocart.pages.LoginPage;
 import com.buffalocart.pages.SignOutPage;
 import org.testng.annotations.Test;
@@ -12,9 +12,9 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-public class HomeTest extends Base {
+public class UserTest extends Base {
 
-    HomePage home;
+    UserPage home;
     LoginPage login;
     SignOutPage signOut;
     SoftAssert softAssert;

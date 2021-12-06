@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AddSalesCommissionAgentsTest extends Base {
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     SignOutPage signOut;
     UsersPage usersPage;
@@ -30,23 +30,31 @@ public class AddSalesCommissionAgentsTest extends Base {
         extentTest.get().assignCategory("Regression");
 
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage = userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        Thread.sleep(200);
-        salesCommissionPage = usersPage.salesCommissionTabClick();
+        usersPage= userManagementPage.usersTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
+        Thread.sleep(3000);
+        salesCommissionPage = userManagementPage.salesCommissionTabClick();
+        extentTest.get().log(Status.PASS, "Successfully navigated to SCAgents Page");
+        Thread.sleep(3000);
         addSaleCommissionAgentPage = salesCommissionPage.clickAddSCAButton();
+        extentTest.get().log(Status.PASS, "Successfully clicked Add SCAgents Button");
         Thread.sleep(4000);
         addSaleCommissionAgentPage.enterValues();
+        extentTest.get().log(Status.PASS, "Successfully Entered SCAgents Values");
         salesCommissionPage = addSaleCommissionAgentPage.saveButtonclick();
-        Thread.sleep(4000);
+        extentTest.get().log(Status.PASS, "Successfully clicked save button");
+        Thread.sleep(6000);
         List<String> SCAList = salesCommissionPage.getActualUsersList();
         System.out.println(SCAList);
         boolean value = salesCommissionPage.getTableDataContains(SCAList, addSaleCommissionAgentPage.getSCAAgent());
         softAssert = new SoftAssert();
         softAssert.assertTrue(value, "ERROR : Sales Commission Agent Addition Unsuccessful");
+        extentTest.get().log(Status.PASS, "Successfully Asserted the added SCAgents Details");
         signOut = home.clickOnUserName();
         signOut.userAccountSignOut();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");

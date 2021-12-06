@@ -68,7 +68,7 @@ public class AddRolesPage extends TestHelperUtility {
         page.enterText(roleName, newRoleName);
     }
     public void clickOnUserPermissionSelectAllCheckbox() {
-        page.clickOnElement(userSelectAll);
+        //page.clickOnElement(userSelectAll);
     }
     public void clickOnRolesPermissionSelectAllCheckbox() {
         page.clickOnElement(rolesSelectAll);
@@ -83,6 +83,15 @@ public class AddRolesPage extends TestHelperUtility {
     public RolesPage clickOnSaveButton() throws IOException {
         page.clickOnElement(saveButton);
         return new RolesPage(driver);
+    }
+
+    public boolean getOptionContains(List<String> actualOption,String expectedOption){
+        if(actualOption.contains(expectedOption)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

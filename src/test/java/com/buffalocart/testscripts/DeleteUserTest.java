@@ -14,12 +14,11 @@ import java.util.List;
 
 public class DeleteUserTest extends Base {
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     UsersPage usersPage;
     DeleteUserPage deleteUserPage;
     SignOutPage signOut;
-    EditUserPage editUserPage;
     SoftAssert softAssert;
 
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
@@ -29,20 +28,21 @@ public class DeleteUserTest extends Base {
 
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        editUserPage = new EditUserPage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage = userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
         Thread.sleep(6000);
-        extentTest.get().log(Status.PASS, "Successfully clicked User Tab");
         String userDelete = usersPage.getUserToBeDeleted();
-        Thread.sleep(1000);
+        Thread.sleep(8000);
         deleteUserPage = usersPage.clickOnDeleteButton(userDelete);
         extentTest.get().log(Status.PASS, "Successfully clicked Delete Button");
+        Thread.sleep(6000);
         usersPage=deleteUserPage.clickOnOkButton();
+        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Successfully clicked ok button");
         List<ArrayList<String>> data=usersPage.getTableDataText();
         boolean value =usersPage.getTableDataContains(data,usersPage.getUserToBeDeleted());

@@ -13,12 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class HomePage extends TestHelperUtility {
+public class UserPage extends TestHelperUtility {
 
     WebDriver driver;
     List<String> readExcelData = excel.readExcel(Constants.EXCEL_FILE_PATH, Constants.SHEET_NAME_HOME_PAGE);
 
-    public HomePage(WebDriver driver) throws IOException {
+    public UserPage(WebDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -30,6 +30,9 @@ public class HomePage extends TestHelperUtility {
     @FindBy(xpath =_userAccountName )
     private WebElement userAccountName;
 
+    private final String _userManagementTab="//i[@class='fa fa-users']/following-sibling::span[@class='title']";
+    @FindBy(xpath = _userManagementTab)
+    private WebElement userManagementTab;
 
 
     private final String _homePageDate="//div[@class='m-8 pull-left mt-15 hidden-xs']//strong";
@@ -37,6 +40,12 @@ public class HomePage extends TestHelperUtility {
     private WebElement homePageDate;
 
    public void clickOnEndTour(){endTour.click();}
+
+    public UserManagementPage userManagementTabClick() throws IOException {
+        page.clickOnElement(userManagementTab);
+        return new UserManagementPage(driver);
+    }
+
 
     public String getActualHomePageTitle(){
        return page.getPageTitle(driver);

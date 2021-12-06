@@ -27,7 +27,7 @@
                     <include name="VerifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
                 </methods>
             </class>
-            <class name="com.buffalocart.testscripts.HomeTest">
+            <class name="com.buffalocart.testscripts.UserTest">
                 <methods>
                     <include name="VerifyHomePageTitle"/>
                     <include name="VerifyDateDisplayedInHomePage"/>
@@ -50,7 +50,7 @@
                     <include name="VerifyMessageDisplayedByUserSearchWithInvalidData"/>
                 </methods>
             </class>
-            <class name="com.buffalocart.testscripts.NewUserTest">
+            <class name="com.buffalocart.testscripts.AddUserTest">
             <methods>
                 <include name="VerifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
                 <include name="VerifyUserLoginWithNewlyAddedUser"/>

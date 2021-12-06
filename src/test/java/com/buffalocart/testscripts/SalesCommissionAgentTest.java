@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class SalesCommissionAgentTest extends Base {
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     SignOutPage signOut;
     UsersPage usersPage;
@@ -24,14 +24,19 @@ public class SalesCommissionAgentTest extends Base {
     @Test(priority = 28, enabled = true, description = "TC_028_verifySalesCommissionAgentsPageTitle", groups = {"Regression"})
     public void verifySalesCommissionAgentsPageTitle() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
+
+
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage = userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        Thread.sleep(100);
-        salesCommissionPage = usersPage.salesCommissionTabClick();
+        usersPage= userManagementPage.usersTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
+        Thread.sleep(3000);
+        salesCommissionPage = userManagementPage.salesCommissionTabClick();
+        Thread.sleep(6000);
         String actualSCATitle= salesCommissionPage.getActualSalesCommissionPageTitle();
         String expectedSCATitle= salesCommissionPage.getExpectedSalesCommissionPageTitle();
         softAssert=new SoftAssert();

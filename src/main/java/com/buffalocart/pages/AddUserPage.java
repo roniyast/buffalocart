@@ -11,10 +11,10 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.List;
 
-public class NewUserPage extends TestHelperUtility {
+public class AddUserPage extends TestHelperUtility {
     WebDriver driver;
 
-    public NewUserPage(WebDriver driver) throws IOException {
+    public AddUserPage(WebDriver driver) throws IOException {
       this.driver = driver;
       PageFactory.initElements(driver, this);
     }
@@ -56,13 +56,16 @@ public class NewUserPage extends TestHelperUtility {
     private final String _tableRowValuesXpath="//table[@id='users_table']//tr";
     private final String _tableRowCellValuesXpath="//table[@id='users_table']//tr[1]/td";
 
+    private final String _downArrow ="//span[@class='select2-selection__arrow']";
+    @FindBy(xpath = _downArrow)
+    private WebElement downArrow;
 
     private static String newUserName;
     public static String getNewUserName() {
         return newUserName;
     }
     public static void setNewUserName(String newUserName) {
-        NewUserPage.newUserName = newUserName;
+        AddUserPage.newUserName = newUserName;
     }
 
 
@@ -104,6 +107,16 @@ public class NewUserPage extends TestHelperUtility {
     public void selectRole() {
         waitUtility.waitForVisibilityOfElement(driver, WaitUtility.LocatorType.Id, _role,waitUtility.EXPLICIT_WAIT);
         page.selectDropdownByIndex(role,Integer.parseInt(readExcelData.get(7)));
+    }
+
+    public List<WebElement> getRoleOptions(){
+        page.clickOnElement(downArrow);
+       List<WebElement> options =page.selectGetOption(role);
+        return options;
+    }
+    public List<String> getRoles(){
+        return page.selectGetOptionText(role);
+
     }
 
     public String getUserName(){

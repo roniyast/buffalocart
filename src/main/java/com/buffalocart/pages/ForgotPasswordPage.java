@@ -32,10 +32,7 @@ public class ForgotPasswordPage<email> extends TestHelperUtility {
     @FindBy(xpath =_messageBlock )
     public WebElement messageBlock;
 
-    public void forgotPasswordLinkClick() throws IOException {
-        login= new LoginPage(driver);
-        login.clickOnForgotPassword();
-    }
+
 
     public String getExpectedInvalidUserName(){
         return readExcelData.get(2);

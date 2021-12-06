@@ -14,7 +14,7 @@ public class LoginPage extends TestHelperUtility {
 
     WebDriver driver;
     List<String> readExcelData = excel.readExcel(Constants.EXCEL_FILE_PATH, Constants.SHEET_NAME_LOGIN_PAGE);
-    HomePage home;
+    UserPage home;
     public LoginPage(WebDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -102,13 +102,14 @@ public class LoginPage extends TestHelperUtility {
         }
     }
 
-    public HomePage loginButtonClick() throws IOException {
+    public UserPage loginButtonClick() throws IOException {
         page.clickOnElement(loginButton);
-        return new HomePage(driver);
+        return new UserPage(driver);
     }
 
-    public void clickOnForgotPassword() throws IOException {
+    public ForgotPasswordPage clickOnForgotPassword() throws IOException {
         page.clickOnElement(forgotPassword);
+        return new ForgotPasswordPage(driver);
     }
 
     public String getActualInvalidUserMessage() throws IOException {
@@ -127,28 +128,20 @@ public class LoginPage extends TestHelperUtility {
         return page.isElementSelected(rememberMe);
     }
 
-    public HomePage successfulLoginHomePage() throws IOException {
+    public UserPage successfulLoginHomePage() throws IOException {
         enterUserNameLogin(getUsernameLogin());
         enterPasswordLogin(getPasswordLogin());
         RememberMeLoginCheck(getExpectedRememberMeCheckBoxStatus());
         loginButtonClick();
-        return new HomePage(driver);
+        return new UserPage(driver);
     }
     public UserManagementPage successfulLoginUserManagementPage() throws IOException {
-        enterUserNameLogin(getUsernameLogin());
-        enterPasswordLogin(getPasswordLogin());
-        RememberMeLoginCheck(getExpectedRememberMeCheckBoxStatus());
-        loginButtonClick();
-        home = new HomePage(driver);
+        home= successfulLoginHomePage();
         home.clickOnEndTour();
         return new UserManagementPage(driver);
     }
     public UsersPage successfulLoginUsersPage() throws IOException {
-        enterUserNameLogin(getUsernameLogin());
-        enterPasswordLogin(getPasswordLogin());
-        RememberMeLoginCheck(getExpectedRememberMeCheckBoxStatus());
-        loginButtonClick();
-        home = new HomePage(driver);
+        home= successfulLoginHomePage();
         home.clickOnEndTour();
         return new UsersPage(driver);
     }

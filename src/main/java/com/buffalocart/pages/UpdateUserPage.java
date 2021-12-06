@@ -10,10 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.List;
 
-public class EditUserPage extends TestHelperUtility {
+public class UpdateUserPage extends TestHelperUtility {
 
     WebDriver driver;
-    public EditUserPage(WebDriver driver) throws IOException {
+    public UpdateUserPage(WebDriver driver) throws IOException {
         this.driver= driver;
         PageFactory.initElements(driver, this);
     }
@@ -36,9 +36,7 @@ public class EditUserPage extends TestHelperUtility {
         page.enterText(emailEdit,getValueEdit());
     }
 
-    public String getEditUserSearch(){
-        return readExcelData.get(4);
-    }
+
     public String getDeleteUserSearch(){
         return readExcelData.get(10);
     }

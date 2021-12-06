@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class ForgotPasswordTest extends Base {
 
+    LoginPage loginPage;
     ForgotPasswordPage forgotPwdPage;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
@@ -21,12 +22,14 @@ public class ForgotPasswordTest extends Base {
 
         extentTest.get().assignCategory("Regression");
 
-        forgotPwdPage= new ForgotPasswordPage(driver);
-        forgotPwdPage.forgotPasswordLinkClick();
+        loginPage= new LoginPage(driver);
+        forgotPwdPage=loginPage.clickOnForgotPassword();
         String expectedInvalidUserName = forgotPwdPage.getExpectedInvalidUserName();
         extentTest.get().log(Status.PASS, "Expected Invalid Username Captured");
         forgotPwdPage.setInvalidUserName(expectedInvalidUserName);
+        extentTest.get().log(Status.PASS, "Expected Invalid Username Entered");
         forgotPwdPage.clickOnResetButton();
+        extentTest.get().log(Status.PASS, "Successfully clicked Reset button");
         String actualInvalidUserNameMessage=forgotPwdPage.getActualErrorMessageBlockInvalidUser();
         String expectedInvalidUserNameMessage= forgotPwdPage.getExpectedErrorMessageBlockInvalidUser();
         Assert.assertEquals(actualInvalidUserNameMessage, expectedInvalidUserNameMessage, "ERROR : Invalid User Password Reset ");

@@ -11,7 +11,7 @@ public class PageUtility {
     Actions action;
     Alert alert;
     Select select;
-    List list;
+    List <WebElement>list;
     JavascriptExecutor js;
 
     public void clickOnElement(WebElement element) {
@@ -127,9 +127,20 @@ public class PageUtility {
     public List<WebElement> selectGetOption(WebElement element) {
         select = new Select(element);
         list = new ArrayList();
-        list.add(select.getOptions());
+        list=select.getOptions();
         return list;
     }
+    public List<String> selectGetOptionText(WebElement element) {
+        select = new Select(element);
+        list = new ArrayList<WebElement>();
+        list=select.getOptions();
+       List<String> textList = new ArrayList<String>();
+       for(int i = 0; i<list.size();i++){
+           textList.add(list.get(i).getText());
+       }
+       return textList;
+    }
+
 
     public String getElementText(WebElement element) {
         return element.getText();

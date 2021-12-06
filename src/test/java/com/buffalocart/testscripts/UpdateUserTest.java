@@ -12,37 +12,39 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditUserTest extends Base {
+public class UpdateUserTest extends Base {
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     UsersPage usersPage;
     SignOutPage signOut;
-    EditUserPage editUserPage;
+    UpdateUserPage updateUserPage;
     SoftAssert softAssert;
 
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 17, enabled = true, description = "TC_017_VerifyEditUserPageTitle", groups = {"Sanity","Regression"})
     public void verifyEditUserPageTitle() throws IOException, InterruptedException {
+
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
+
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        editUserPage = new EditUserPage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage = userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
         Thread.sleep(6000);
-        extentTest.get().log(Status.PASS, "Successfully clicked User Tab");
-        String userName = editUserPage.getEditUserSearch();
-        editUserPage = usersPage.clickOnEditButton(userName);
+        String userName = usersPage.getExpectedUser();
+        updateUserPage = usersPage.clickOnEditButton(userName);
+        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Successfully captured username to search");
-        String actualEditUserPageTitle = editUserPage.getActualEditUserPageTitle();
+        String actualEditUserPageTitle = updateUserPage.getActualEditUserPageTitle();
         extentTest.get().log(Status.PASS, "Successfully captured Actual Edit User Page Title");
-        String expectedEditUserPageTitle = editUserPage.getExpectedEditUserPageTitle();
+        String expectedEditUserPageTitle = updateUserPage.getExpectedEditUserPageTitle();
         extentTest.get().log(Status.PASS, "Successfully captured Expected Edit User Page Title");
         softAssert = new SoftAssert();
         softAssert.assertEquals(actualEditUserPageTitle, expectedEditUserPageTitle, "ERROR : Invalid Edit User Page Title Found");
@@ -58,24 +60,25 @@ public class EditUserTest extends Base {
 
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
+
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        editUserPage = new EditUserPage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage = userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
-        extentTest.get().log(Status.PASS, "Successfully clicked User Tab");
-        String userName = editUserPage.getEditUserSearch();
-        usersPage.clickOnEditButton(userName);
+        usersPage= userManagementPage.usersTabClick();
+        extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
+        String userName = usersPage.getExpectedUser();
+        updateUserPage=usersPage.clickOnEditButton(userName);
         extentTest.get().log(Status.PASS, "Successfully captured username to search");
-        editUserPage.setValueEmail();
+        Thread.sleep(8000);
+        updateUserPage.setValueEmail();
         extentTest.get().log(Status.PASS, "Edited email for a user");
-        usersPage=editUserPage.updateButtonClick();
+        usersPage= updateUserPage.updateButtonClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Update button");
         List<ArrayList<String>> data=usersPage.getTableDataText();
-        usersPage.getTableDataContains(data,editUserPage.getValueEdit());
+        usersPage.getTableDataContains(data, updateUserPage.getValueEdit());
         extentTest.get().log(Status.PASS, "Checked for the updated value in table data");
         Thread.sleep(8000);
         signOut = home.clickOnUserName();

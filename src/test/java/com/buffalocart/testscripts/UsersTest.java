@@ -13,7 +13,7 @@ import java.io.IOException;
 public class UsersTest extends Base {
 
     LoginPage loginPage;
-    HomePage home;
+    UserPage home;
     UserManagementPage userManagementPage;
     SignOutPage signOut;
     UsersPage usersPage;
@@ -24,12 +24,12 @@ public class UsersTest extends Base {
     public void verifyUsersPageTitle() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home=new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home =loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage=userManagementPage.userManagementTabClick();
+        userManagementPage= home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
         String expectedUsersPageTitle = usersPage.getExpectedUsersPageTitle();
         extentTest.get().log(Status.PASS, "Successfully captured  expected Users page title");
@@ -51,12 +51,13 @@ public class UsersTest extends Base {
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage=userManagementPage.userManagementTabClick();
+        Thread.sleep(3000);
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
         String expectedUser = usersPage.getExpectedUser();
         extentTest.get().log(Status.PASS, "Successfully Captured expected User id");
@@ -77,12 +78,12 @@ public class UsersTest extends Base {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Regression");
         loginPage = new LoginPage(driver);
-        home = new HomePage(driver);
-        userManagementPage = loginPage.successfulLoginUserManagementPage();
+        home = loginPage.successfulLoginHomePage();
+        home.clickOnEndTour();
         extentTest.get().log(Status.PASS, "Successfully logged into Home Page");
-        usersPage=userManagementPage.userManagementTabClick();
+        userManagementPage=home.userManagementTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked User Management Tab");
-        usersPage.usersTabClick();
+        usersPage= userManagementPage.usersTabClick();
         extentTest.get().log(Status.PASS, "Successfully clicked Users Tab");
 
         String expectedInvalidUserValue = usersPage.getExpectedInvalidUser();
